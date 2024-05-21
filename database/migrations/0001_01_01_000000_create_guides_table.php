@@ -13,12 +13,11 @@ return new class extends Migration
     {
         Schema::create('guides', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('utilisateur_id');
-            $table->string('certifications')->nullable();
-            $table->string('languesParlees')->nullable();
+            $table->date('date_naissance');
+            $table->string('cine');
+            $table->string('sertificat');
+            $table->integer('accepter')->default(0);
             $table->timestamps();
-            $table->foreign('utilisateur_id')->references('id')->on('utilisateurs')->onDelete('cascade');
-
         });
     }
 

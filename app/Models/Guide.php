@@ -8,9 +8,4 @@ use Illuminate\Database\Eloquent\Model;
 class Guide extends Model
 {
     use HasFactory;
-    protected $table ="guides";
-    protected $fillable = [
-        'utilisateur_id', 'certifications', 'languesParlees',
-    ];
-
 }

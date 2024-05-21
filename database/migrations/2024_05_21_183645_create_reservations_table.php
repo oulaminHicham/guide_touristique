@@ -13,15 +13,11 @@ return new class extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('client_id');
-            $table->unsignedBigInteger('circuit_id');
             $table->date('date');
-            $table->string('statut'); // 'en attente', 'confirmée', 'annulée'
-            $table->boolean('paiementEffectue')->default(false);
+            $table->string('distination');
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('cirquit_id')->constrained();
             $table->timestamps();
-            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
-            $table->foreign('circuit_id')->references('id')->on('cirquits')->onDelete('cascade');
-
         });
     }
 
