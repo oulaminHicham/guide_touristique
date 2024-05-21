@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ReservationResource;
 use Illuminate\Http\Request;
+use App\Models\Reservation;
 
 class ReservationController extends Controller
 {
@@ -12,46 +14,37 @@ class ReservationController extends Controller
      */
     public function index()
     {
+        return ReservationResource::collection(Reservation::all());
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            "date"=> ['required','date'],
+            "distination"=> ['required','string' , 'max:40'],
+            "user_id"=> ['required','integer','exists:users,id'],
+            "cirquit_id"=> ['required','integer','exists:cirquits,id'],
+        ]);
+        $resevation = Reservation::create($request->all());
+        return new ReservationResource($resevation);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            "date"=> ['required','date'],
+            "distination"=> ['required','string' , 'max:40'],
+            "user_id"=> ['required','integer','exists:users,id'],
+            "cirquit_id"=> ['required','integer','exists:cirquits,id'],
+        ]);
+        $reservation = Reservation::find($id);
+        $reservation->update($request->all());
+        return new  ReservationResource($reservation);
     }
 
     /**
@@ -59,6 +52,8 @@ class ReservationController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $reservation = Reservation::find($id);
+        $reservation->delete();
+        return 204 ;
     }
 }
