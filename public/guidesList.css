@@ -1,0 +1,80 @@
+.list--guid{
+    display: flex;
+    margin: 1rem 0;
+
+}
+.list--guid h4{
+  font-size: 18px;
+}
+.guid--content{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 92%;
+}
+.list{
+    display: flex;
+    padding-right: 10px;
+    align-items: center;
+    justify-content: space-between;
+    transition: 0.3s ease-in-out;
+    border:1px solid #bdc4ca;
+    border-radius: 40px;
+}
+.guides--detait{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: #526d82;
+
+}
+.guides--detait img{
+    width: 40px;
+    height: 40px;
+    background: #dde6ed ;
+    border-radius: 50%;
+    margin: 6px;
+
+}
+.admin--guide{
+    font-size: 20px;
+    padding: 10px;
+}
+/* // /////////////////////////////////////// */
+/* Dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+
+  }
+  .dropbtn{
+    border: none;
+    background: white;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {
+    background-color: #f1f1f1;
+  }
+
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
