@@ -5,20 +5,16 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
-{ 
+{
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('cirquits', function (Blueprint $table) {
+        Schema::create('distinations', function (Blueprint $table) {
             $table->id();
-            $table->string('distination');
-            $table->string('photos');
-            $table->string('descreption');
-            $table->float('prix');
-            $table->foreignId('guide_id')->constrained();
-            $table->foreignId('distination_id')->constrained();
+            $table->string('nom');
+            $table->string('photo');
             $table->timestamps();
         });
     }
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cirquits');
+        Schema::dropIfExists('distinations');
     }
 };
