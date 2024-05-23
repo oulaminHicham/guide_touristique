@@ -29,7 +29,6 @@ class ReservationController extends Controller
         ]);
         $resevation = Reservation::create($request->all());
         return new ReservationResource($resevation);
-
     }
     /**
      * Update the specified resource in storage.
@@ -46,7 +45,6 @@ class ReservationController extends Controller
         $reservation->update($request->all());
         return new  ReservationResource($reservation);
     }
-
     /**
      * Remove the specified resource from storage.
      */
