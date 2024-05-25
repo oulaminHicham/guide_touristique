@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\GuideResource;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class GuideController extends Controller
 {
@@ -23,12 +24,18 @@ class GuideController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            "date_naissance"=> ['required' , 'string','date' ],
-            "cine"=> ['required' , 'string' ,'max:8', 'min:8'],
-            "sertificat"=> ['required' , 'string','image' ],
-            "accepter"=> ['required' , 'integer' ],
-        ]);
+        // $request->validate([
+        //     "name"=> ['required' , 'string' ],
+        //     "prenom"=> ['required' , 'string' ],
+        //     "username"=> ['required' , 'string' ],
+        //     "date_naissance"=> ['required' ,'date' ],
+        //     "sertificat"=> ['required' , 'string','image' ],
+        //     "cine"=> ['required' , 'string' ,'max:8', 'min:8'],
+        //     "photo"=> ['required' , 'string' ,'image'],
+        //     "email"=> ['required' , 'email' ,'unique:users'],
+        //     "password"=> ['required' , 'password' ,'min:8'],
+        // ]);
+        $request['isGuide'] = 1 ;
         $data =  User::create($request->all());
         return new GuideResource($data);
     }
@@ -37,14 +44,18 @@ class GuideController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request->validate([
-            "date_naissance"=> ['required' , 'string','date' ],
-            "cine"=> ['required' , 'string' ,'max:8', 'min:8'],
-            "sertificat"=> ['required' , 'string','image' ],
-            "accepter"=> ['required' , 'integer' ],
-        ]);
-
         $guide = User::findOrFail($id);
+        $request->validate([
+            "name"=> ['required' , 'string' ],
+            "prenom"=> ['required' , 'string' ],
+            "username"=> ['required' , 'string' ],
+            "date_naissance"=> ['required' ,'date' ],
+            "sertificat"=> ['required' , 'string','image' ],
+            "cine"=> ['required' , 'string' ,'max:8', 'min:8'],
+            "photo"=> ['required' , 'string' ,'image'],
+            "email"=> ['required' , 'email' ,Rule::unique('users')->ignore($guide->id)],
+            "password"=> ['required' , 'password' ,'min:8'],
+        ]);
         $guide->update($request->all());
         return new GuideResource($guide);
     }
