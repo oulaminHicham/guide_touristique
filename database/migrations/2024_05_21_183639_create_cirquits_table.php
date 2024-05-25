@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
-{ 
+{
     /**
      * Run the migrations.
      */
@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('cirquits', function (Blueprint $table) {
             $table->id();
-            $table->string('distination');
             $table->string('photos');
             $table->string('descreption');
             $table->float('prix');
-            $table->foreignId('guide_id')->constrained();
+            $table->unsignedBigInteger('guide_id');
+            $table->foreign('guide_id')->references('id')->on('users')->onDelete('cascade'); 
             $table->foreignId('distination_id')->constrained();
             $table->timestamps();
         });

@@ -15,10 +15,14 @@ class GuideResource extends JsonResource
     public function toArray(Request $request): array
     {
         return[
+            "id"=> $this->id,
+            "name"=> $this->name,
+            "username"=> $this->username,
+            "cine"=> $this->cine,
+            "email"=> $this->email,
             "date_naissance"=>$this->date_naissance,
-            "cine"=>$this->cine,
+            "photo"=>$this->photo,
             "sertificat"=>$this->sertificat,
-            "accepter"=>$this->accepter
         ];
     }
 }

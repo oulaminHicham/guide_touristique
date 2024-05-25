@@ -4,19 +4,18 @@ use App\Http\Controllers\DistinationController;
 use App\Http\Controllers\GuideController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Ramsey\Uuid\Guid\Guid;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-// to instal api => php artisan install:api
-Route::get('/distinations', [DistinationController::class , 'index']);
-// http://127.0.0.1:8000/api/distinations
+//     ######             DISTINATIONS APIS            #########
+Route::get('/distinations', [DistinationController::class , 'index']); // http://127.0.0.1:8000/api/distinations
 
+//     ######             GUIDE APIS            #########
 
-// Guid Apis:
-Route::get('/guides', [GuideController::class , 'index']);
-Route::post('/guides', [GuideController::class , 'store']);
-Route::put('/guides/{id}', [GuideController::class , 'update']);
-Route::delete('/guides/{id}', [GuideController::class , 'destroy']);
+// Route::get('/guides', [GuideController::class , 'index']);
+// Route::post('/guides', [GuideController::class , 'store']);
+// Route::put('/guides/{id}', [GuideController::class , 'update']);
+// Route::delete('/guides/{id}', [GuideController::class , 'destroy']);
+Route::apiResource('/guides' , GuideController::class);
