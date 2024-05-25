@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cirquits', function (Blueprint $table) {
+        Schema::create('circuits', function (Blueprint $table) {
             $table->id();
             $table->string('photos');
             $table->string('descreption');
             $table->float('prix');
             $table->unsignedBigInteger('guide_id');
-            $table->foreign('guide_id')->references('id')->on('users')->onDelete('cascade'); 
+            $table->foreign('guide_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('distination_id')->constrained();
             $table->timestamps();
         });
