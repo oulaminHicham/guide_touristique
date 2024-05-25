@@ -8,8 +8,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/guidesList', [GuideController::class, 'guidesList']);
-Route::get('/circuitsList', [CircuitController::class, 'circuitsList']);
+Route::get('/guides', [GuideController::class, 'guidesList'])->name('guides.guidesList');
+Route::get('/circuits', [CircuitController::class, 'circuitsList']);
+
+// Resourceful routes for guides
+
+Route::resource('guides', GuideController::class);
+Route::resource('circuits',CircuitController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

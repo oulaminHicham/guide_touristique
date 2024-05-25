@@ -29,14 +29,14 @@
 
 
 
-                     <a class='item' href='/guidesList'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-medical" viewBox="0 0 16 16">
+                     <a class='item' href='/guides'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-medical" viewBox="0 0 16 16">
                     <path d="M7.5 5.5a.5.5 0 0 0-1 0v.634l-.549-.317a.5.5 0 1 0-.5.866L6 7l-.549.317a.5.5 0 1 0 .5.866l.549-.317V8.5a.5.5 0 1 0 1 0v-.634l.549.317a.5.5 0 1 0 .5-.866L8 7l.549-.317a.5.5 0 1 0-.5-.866l-.549.317zm-2 4.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 2a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1z"/>
                    <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/>
                    </svg>Guides</a>
 
 
 
-                     <a class='item' href='/circuitsList'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-dash" viewBox="0 0 16 16">
+                     <a class='item' href='/circuits'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-dash" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M5.5 6.5A.5.5 0 0 1 6 6h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5"/>
                     <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z"/>
                     </svg>Circuits</a>
@@ -107,35 +107,22 @@
                         </div>
                     @endforeach
                 </div>
-                <?php
-$circuits = [
-        [
-            'image' => 'wallpaperflare.com_wallpaper (6).jpg',
-            'title' => 'one piece',
-        ],
-        [
-            'image' => 'wallpaperflare.com_wallpaper (6).jpg',
-            'title' => 'one piece',
-        ],
-        [
-            'image' => 'wallpaperflare.com_wallpaper (6).jpg',
-            'title' => 'one piece',
-        ]
-    ];
-    ?>
+
 <div class='circuits--list'>
     <div class="titre--circuit">
         <h4>Tous les circuits</h4>
     </div>
     <div class="circuit--content">
-        @foreach ($circuits as $circuit)
+        @foreach ($circuit as $circuits)
         <div class='container'>
             <div class='image--card'>
-                <img src="{{ asset($circuit['image']) }}" alt="" /> <!-- Assuming 'image' is the path to your images -->
+                <img src="{{ asset('images/' .$circuits['photos']) }}" alt="{{ $circuits['distination'] }}" /> <!-- Assuming 'image' is the path to your images -->
             </div>
+            <h4>{{ $circuits['prix'] }} $</h4>
             <div class='content--card'>
-                <h3>{{ $circuit['title'] }}</h3>
+                <h3>{{ $circuits['distination'] }}</h3>
             </div>
+
         </div>
         @endforeach
     </div>

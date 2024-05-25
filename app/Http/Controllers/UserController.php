@@ -2,23 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Circuit;
-use App\Models\Cirquit;
+use App\Models\Guide;
 use Illuminate\Http\Request;
 
-class CircuitController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function circuitsList(){
-        $activeTab = 'circuitsList';
-        return view('circuits.circuitsList',compact('activeTab'));
-    }
     public function index()
     {
-        $circuit = Circuit::all();
-        return view("circuits.circuitsList", compact("circuit"));
+
     }
 
     /**
@@ -66,6 +60,6 @@ class CircuitController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+
     }
 }
