@@ -12,7 +12,7 @@ Route::get('/guides', [GuideController::class, 'guidesList'])->name('guides.guid
 Route::get('/circuits', [CircuitController::class, 'circuitsList']);
 
 // Resourceful routes for guides
-
+Route::post('/guides/{id}/accept', [GuideController::class, 'acceptGuide'])->name('guides.acceptGuide');
 Route::resource('guides', GuideController::class);
 Route::resource('circuits',CircuitController::class);
 

@@ -20,9 +20,14 @@ class User extends Authenticatable
         'name',
         'prenom',
         'username',
+        'date_naissance',
+        'sertificat',
+        'accepter',
+        'isGuide',
+        'cine',
+        'email',
         'photo',
         'password',
-        'guide_id',
     ];
 
     /**

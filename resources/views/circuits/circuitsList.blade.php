@@ -109,18 +109,19 @@
                 </div>
 
 <div class='circuits--list'>
-    <div class="titre--circuit">
+    <div class="titre--circuit" style="justify-content: space-between">
         <h4>Tous les circuits</h4>
+        <a href="{{ route('circuits.create') }}" style="color: #bc8643"><i class="fas fa-plus-square"></i></a>
     </div>
     <div class="circuit--content">
         @foreach ($circuit as $circuits)
         <div class='container'>
             <div class='image--card'>
-                <img src="{{ asset('images/' .$circuits['photos']) }}" alt="{{ $circuits['distination'] }}" /> <!-- Assuming 'image' is the path to your images -->
+                <img src="{{ asset('images/' .$circuits['photos']) }}" alt="{{ $circuits['descreption'] }}" /> <!-- Assuming 'image' is the path to your images -->
             </div>
             <h4>{{ $circuits['prix'] }} $</h4>
             <div class='content--card'>
-                <h3>{{ $circuits['distination'] }}</h3>
+                <h3>{{ $circuits['descreption'] }}</h3>
             </div>
 
         </div>

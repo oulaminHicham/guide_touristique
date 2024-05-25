@@ -26,16 +26,27 @@ class CircuitController extends Controller
      */
     public function create()
     {
-        //
+        return view("circuits.create");
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        //
-    }
+{
+    $request->validate([
+        'photos' => 'required',
+        'descreption' => 'required',
+        'price' => 'required',
+        'guide_id' => 'required',
+        'destination_id' => 'required',
+    ]);
+
+    $data = Circuit::create($request->all());
+    $data->save();
+    return redirect()->route('circuits.index');
+}
+
 
     /**
      * Display the specified resource.
@@ -66,6 +77,8 @@ class CircuitController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $circuit = Circuit::findOrFail($id);
+        $circuit->delete();
+        return redirect()->route('circuits.index');
     }
 }

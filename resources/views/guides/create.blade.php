@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Guide</title>
+    <title>Add Guide</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -61,39 +61,38 @@
         }
 
         input[type="submit"]:hover {
-            background-color: #6a4224;
+            background-color: #bc8643;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Edit Guide</h1>
-        <form action="{{ route('guides.update', $user->id) }}" method="POST">
+        <h1>Add Guide</h1>
+        <form action="{{ route('guides.store') }}" method="POST">
             @csrf
-            @method('PUT')
             <label for="name">Name</label>
-            <input type="text" id="name" name="name" value="{{ $user->name }}" required>
+            <input type="text" id="name" name="name" required>
 
             <label for="prenom">Prenom</label>
-            <input type="text" id="prenom" name="prenom" value="{{ $user->prenom }}" required>
+            <input type="text" id="prenom" name="prenom" required>
 
             <label for="username">Username</label>
-            <input type="text" id="username" name="username" value="{{ $user->username }}" required>
+            <input type="text" id="username" name="username" required>
 
             <label for="date_naissance">Date de naissance</label>
-            <input type="date" id="date_naissance" name="date_naissance" value="{{ $user->date_naissance }}" required>
+            <input type="date" id="date_naissance" name="date_naissance" required>
 
             <label for="sertificat">Sertificat</label>
-            <input type="file" id="sertificat" name="sertificat" value="{{ $user->sertificat }}" required>
+            <input type="file" id="sertificat" name="sertificat" required>
 
             <label for="cine">Cine</label>
-            <input type="text" id="cine" name="cine" value="{{ $user->cine }}" required>
+            <input type="text" id="cine" name="cine" required>
 
             <label for="photo">Photo</label>
-            <input type="file" id="photo" name="photo" value="{{ $user->photo }}" required>
+            <input type="file" id="photo" name="photo" required>
 
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" value="{{ $user->email }}" required>
+            <input type="email" id="email" name="email" required>
 
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required>

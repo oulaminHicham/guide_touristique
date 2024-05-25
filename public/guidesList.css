@@ -1,8 +1,10 @@
 .list--guid{
     display: flex;
     margin: 1rem 0;
+    justify-content: space-between;
 
 }
+
 .list--guid h4{
   font-size: 18px;
 }

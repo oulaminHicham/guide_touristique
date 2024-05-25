@@ -111,6 +111,8 @@
                 <div class="guides--list">
                     <div class="list--guid">
                         <h4>Tous les guides</h4>
+                     {{-- //design button ajouter --}}
+                     <a href="{{ route('guides.create') }}" style="color: #bc8643"><i class="fas fa-plus-square"></i></a>
                     </div>
                     <div class="guid--content">
 
@@ -121,23 +123,20 @@
                                     <h4>{{ $user['name'] }} {{ $user['prenom'] }}</h4>
                                 </div>
                                 <div class="dropdown" style="display: flex">
-                                    <form action="{{ route('guides.update', $user['id']) }}" method="POST">
-                                        @csrf
-                                        @method('PUT') <!-- Assuming you're using PUT method for updates -->
-                                        <a href="#" class="edit-btn"><i class="fas fa-pencil-alt"></i></a>
-                                    </form>
+                                        <a href="{{ route('guides.edit', $user['id']) }}"><i class="fas fa-pencil-alt"></i></a>
+
                                         <form action="{{ route('guides.destroy', $user['id']) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit"><i class="fas fa-trash-alt"></i></button>
                                         </form>
                                         {{-- botton accepter if accepter = 0 --}}
-                                        {{-- @if($guid['accepter'] == 0)
-                                       <form action="{{ route('guides.acceptGuide', $guid['id']) }}" method="POST">
+                                        @if($user['accepter'] == 0)
+                                        <form action="{{ route('guides.acceptGuide', $user['id']) }}" method="POST">
                                             @csrf
                                             <button type="submit">Accepter</button>
                                         </form>
-                                    @endif --}}
+                                    @endif
 
                                </div>
                                 </div>

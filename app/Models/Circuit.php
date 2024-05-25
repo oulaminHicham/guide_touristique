@@ -9,7 +9,6 @@ class Circuit extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'distination',
         'photos',
         'descreption',
         'prix',
