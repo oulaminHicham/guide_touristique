@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Circuit;
-use App\Models\Cirquit;
 use Illuminate\Http\Request;
 
 class CircuitController extends Controller
