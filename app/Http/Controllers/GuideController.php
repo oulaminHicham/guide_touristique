@@ -15,10 +15,6 @@ class GuideController extends Controller
      * Display a listing of the resource.
      */
 
-    public function guidesList(){
-        $activeTab = 'guidesList';
-        return view('guides.guidesList',compact('activeTab'));
-    }
     public function index()
     {
         $users = User::where('isGuide' , '=' , 1)->get();
