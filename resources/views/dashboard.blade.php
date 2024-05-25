@@ -106,11 +106,6 @@
                         </div>
                     @endforeach
                 </div>
-                @if (isset($activeTab) && $activeTab == 'guides')
-                    @include('guides.guidesList')
-                @elseif (isset($activeTab) && $activeTab == 'circuits')
-                    @include('circuits.circuitsList')
-                @endif
 
             </div>
         </div>

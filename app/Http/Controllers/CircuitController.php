@@ -11,10 +11,7 @@ class CircuitController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function circuitsList(){
-        $activeTab = 'circuitsList';
-        return view('circuits.circuitsList',compact('activeTab'));
-    }
+    
     public function index()
     {
         $circuit = Circuit::all();
