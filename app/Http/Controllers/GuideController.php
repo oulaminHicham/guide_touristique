@@ -24,18 +24,19 @@ class GuideController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     "name"=> ['required' , 'string' ],
-        //     "prenom"=> ['required' , 'string' ],
-        //     "username"=> ['required' , 'string' ],
-        //     "date_naissance"=> ['required' ,'date' ],
-        //     "sertificat"=> ['required' , 'string','image' ],
-        //     "cine"=> ['required' , 'string' ,'max:8', 'min:8'],
-        //     "photo"=> ['required' , 'string' ,'image'],
-        //     "email"=> ['required' , 'email' ,'unique:users'],
-        //     "password"=> ['required' , 'password' ,'min:8'],
-        // ]);
+        $request->validate([
+            "name"=> ['required' , 'string' ],
+            "prenom"=> ['required' , 'string' ],
+            "username"=> ['required' , 'string' ],
+            "date_naissance"=> ['required' ,'date' ],
+            "sertificat"=> ['required' , 'string','image' ],
+            "cine"=> ['required' , 'string' ,'max:8', 'min:8'],
+            "photo"=> ['required' , 'string' ,'image'],
+            "email"=> ['required' , 'email' ,'unique:users'],
+            "password"=> ['required' ,'min:8'],
+        ]);
         $request['isGuide'] = 1 ;
+        $request['password']=bcrypt($request->password);
         $data =  User::create($request->all());
         return new GuideResource($data);
     }
