@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CirquitController;
 use App\Http\Controllers\DistinationController;
 use App\Http\Controllers\GuideController;
 use Illuminate\Http\Request;
@@ -8,10 +9,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
-
-//     ######             DISTINATIONS APIS            #########
-Route::get('/distinations', [DistinationController::class , 'index']); // http://127.0.0.1:8000/api/distinations
-
+//     ######             DISTINATION DATA API           #########
+Route::get('/distinationData', [DistinationController::class , 'distinationData']);// http://127.0.0.1:8000/api/distinationData
+//     ######             CIRQUIT API           #########
+Route::get("/cirquits" , [CirquitController::class , "index"]);
 //     ######             GUIDE APIS            #########
 
 // Route::get('/guides', [GuideController::class , 'index']);
