@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('photos');
             $table->string('descreption');
             $table->float('prix');
-            $table->foreignId('guide_id')->constrained();
+            $table->unsignedBigInteger('guide_id');
+            $table->foreign('guide_id')->references('id')->on('users')->onDelete('cascade'); 
             $table->foreignId('distination_id')->constrained();
             $table->timestamps();
         });
