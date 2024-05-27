@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Http\Controllers\Controller;
 use App\Http\Resources\GuideResource;
 use App\Models\User;
@@ -14,36 +13,14 @@ class GuideController extends Controller
     /**
      * Display a listing of the resource.
      */
-
     public function index()
     {
-        $users = User::where('isGuide' , '=' , 1)->get();
-        return view("guides.guidesList", compact("users"));
-
+        $guide=User::where('isGuide' , '=' , 1)->get();
+        
+        return GuideResource::collection($guide);
     }
-    // guide accepter
-    public function acceptGuide($id)
-    {
-        $users = User::find($id);
-        $users->accepter = 1;
-        $users->save();
-        return redirect()->route('guides.index');
-     }
-
-
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('guides.create');
-    }
-
-
-
-
-     /* Store a newly created resource in storage.
+    /** 
+     * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
@@ -61,33 +38,14 @@ class GuideController extends Controller
         $request['isGuide'] = 1 ;
         $request['password']=bcrypt($request->password);
         $data =  User::create($request->all());
-        return redirect()->route('guides.index');
+        return new GuideResource($data);
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        $user = User::findOrFail($id);
-        return view('guides.edit', compact('user'));
-    }
-
-
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        $user = User::findOrFail($id);
+        $guide = User::findOrFail($id);
         $request->validate([
             "name"=> ['required' , 'string' ],
             "prenom"=> ['required' , 'string' ],
@@ -96,11 +54,11 @@ class GuideController extends Controller
             "sertificat"=> ['required' , 'string','image' ],
             "cine"=> ['required' , 'string' ,'max:8', 'min:8'],
             "photo"=> ['required' , 'string' ,'image'],
-            "email"=> ['required' , 'email' ,Rule::unique('users')->ignore($user->id)],
+            "email"=> ['required' , 'email' ,Rule::unique('users')->ignore($guide->id)],
             "password"=> ['required' , 'password' ,'min:8'],
         ]);
-        $user->update($request->all());
-        return redirect()->route('guides.index');
+        $guide->update($request->all());
+        return new GuideResource($guide);
     }
     /**
      * Remove the specified resource from storage.
@@ -109,6 +67,7 @@ class GuideController extends Controller
     {
         $guide = User::findOrFail($id);
         $guide->delete();
-        return redirect()->route('guides.index');
+        return 204 ;
     }
-}
+    }
+
