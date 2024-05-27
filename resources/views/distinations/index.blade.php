@@ -40,8 +40,6 @@
             margin-top: 10px;
         }
 
-
-
         .add-button {
             position: fixed;
             bottom: 20px;
@@ -49,9 +47,6 @@
             border-radius: 50%;
             padding: 15px 20px;
         }
-
-
-
 
 .dropdown {
     position: relative;
@@ -112,7 +107,7 @@
                     <div class="card destination-card">
 
                         @if ($distination->photo)
-                            <img src="destination\{{ $distination->photo }}" class="card-img-top destination-img"alt="Photo de {{ $distination->nom }}">
+                            <img src="destination\{{$distination->photo }}" class="card-img-top destination-img"alt="Photo de {{ $distination->nom }}">
                         @else
                             <div class="card-img-top destination-img d-flex align-items-center justify-content-center bg-light">
                                 <span class="text-muted">No Image</span>
