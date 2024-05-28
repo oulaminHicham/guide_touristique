@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CirquitController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DistinationController;
 use App\Http\Controllers\GuideController;
 use Illuminate\Http\Request;
@@ -20,3 +21,5 @@ Route::get("/cirquits" , [CirquitController::class , "index"]);
 // Route::put('/guides/{id}', [GuideController::class , 'update']);
 // Route::delete('/guides/{id}', [GuideController::class , 'destroy']);
 Route::apiResource('/guides' , GuideController::class);
+//     ######             CLIENT APIS            #########
+Route::apiResource("/clients",ClientController::class);
