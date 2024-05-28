@@ -12,7 +12,7 @@ class CircuitController extends Controller
      */
     public function index()
     {
-        
+
         $circuits = Cirquit::all();
 
         return view("circuits.circuitsList", compact("circuits"));
@@ -33,10 +33,10 @@ class CircuitController extends Controller
     {
         $request->validate([
             'photos' => 'required|string',
-            'description' => 'required|string',
-            'price' => 'required|numeric',
+            'descreption' => 'required|string',
+            'prix' => 'required|numeric',
             'guide_id' => 'required|integer',
-            'destination_id' => 'required|integer',
+            'distination_id' => 'required|integer',
         ]);
 
         Cirquit::create($request->all());
@@ -60,10 +60,10 @@ class CircuitController extends Controller
         $circuit = Cirquit::findOrFail($id);
         $request->validate([
             'photos' => 'required|image',
-            'description' => 'required|string',
-            'price' => 'required|numeric',
+            'descreption' => 'required|string',
+            'prix' => 'required|numeric',
             'guide_id' => 'required|integer',
-            'destination_id' => 'required|integer',
+            'distination_id' => 'required|integer',
         ]);
 
         $circuit->update($request->all());

@@ -85,11 +85,11 @@
             </div>
             <div class="form-group">
                 <label for="description">Description:</label>
-                <textarea id="description" name="description" required></textarea>
+                <textarea id="description" name="descreption" required></textarea>
             </div>
             <div class="form-group">
-                <label for="price">Price:</label>
-                <input type="number" id="price" name="price" required>
+                <label for="price">prix:</label>
+                <input type="number" id="prix" name="prix" required>
             </div>
             <div class="form-group">
                 <label for="guide_id">Guide ID:</label>
@@ -97,7 +97,7 @@
             </div>
             <div class="form-group">
                 <label for="destination_id">Destination ID:</label>
-                <input type="number" id="destination_id" name="destination_id" required>
+                <input type="number" id="distination_id" name="distination_id" required>
             </div>
             <div class="form-group">
                 <button type="submit">Submit</button>

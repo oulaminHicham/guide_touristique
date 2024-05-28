@@ -21,12 +21,12 @@
             @foreach ($circuits as $circuit)
             <div class='container-card'>
                 <div class='image--card'>
-                    <img src="{{ asset('images/' .$circuit['photos']) }}" alt="{{ $circuit['description'] }}" />
+                    <img src="{{ asset('images/' .$circuit['photos']) }}" alt="{{ $circuit['descreption'] }}" />
                 </div>
                 <div class='content--card'>
-                    <h3>{{ $circuit['description'] }}</h3>
+                    <h3>{{ $circuit['descreption'] }}</h3>
                     <div style="display: flex">
-                   <h4>{{ $circuit['price'] }} $</h4>
+                   <h4>{{ $circuit['prix'] }} $</h4>
                    <span >
                     <a style="color: #bc8643" href="{{ route('circuits.edit', $circuit['id']) }}"><i class="fas fa-pencil-alt"></i></a>
                                         <form  action="{{ route('circuits.destroy', $circuit['id']) }}" method="POST">

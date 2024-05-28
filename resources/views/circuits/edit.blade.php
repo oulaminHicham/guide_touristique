@@ -90,17 +90,17 @@
 
             <div class="form-group">
                 <label for="description">Description</label>
-                <input type="text" class="form-control" id="description" name="description" value="{{ old('description', $circuit->description) }}">
-                @if ($errors->has('description'))
-                    <div class="alert">{{ $errors->first('description') }}</div>
+                <input type="text" class="form-control" id="descreption" name="descreption" value="{{ old('descreption', $circuit->descreption) }}">
+                @if ($errors->has('descreption'))
+                    <div class="alert">{{ $errors->first('descreption') }}</div>
                 @endif
             </div>
 
             <div class="form-group">
-                <label for="price">Price</label>
-                <input type="number" class="form-control" id="price" name="price" value="{{ old('price', $circuit->price) }}">
-                @if ($errors->has('price'))
-                    <div class="alert">{{ $errors->first('price') }}</div>
+                <label for="prix">Prix</label>
+                <input type="number" class="form-control" id="prix" name="prix" value="{{ old('prix', $circuit->prix) }}">
+                @if ($errors->has('prix'))
+                    <div class="alert">{{ $errors->first('prix') }}</div>
                 @endif
             </div>
 
@@ -113,10 +113,10 @@
             </div>
 
             <div class="form-group">
-                <label for="destination_id">Destination ID</label>
-                <input type="number" class="form-control" id="destination_id" name="destination_id" value="{{ old('destination_id', $circuit->destination_id) }}">
-                @if ($errors->has('destination_id'))
-                    <div class="alert">{{ $errors->first('destination_id') }}</div>
+                <label for="distination_id">Destination ID</label>
+                <input type="number" class="form-control" id="distination_id" name="distination_id" value="{{ old('distination_id', $circuit->distination_id) }}">
+                @if ($errors->has('distination_id'))
+                    <div class="alert">{{ $errors->first('distination_id') }}</div>
                 @endif
             </div>
 
