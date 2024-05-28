@@ -24,14 +24,15 @@ class GuideController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             "name"=> ['required' , 'string' ],
             "prenom"=> ['required' , 'string' ],
             "username"=> ['required' , 'string' ],
             "date_naissance"=> ['required' ,'date' ],
-            "sertificat"=> ['required' , 'string','image' ],
+            "sertificat"=> ['required' , 'string' ],
             "cine"=> ['required' , 'string' ,'max:8', 'min:8'],
-            "photo"=> ['required' , 'string' ,'image'],
+            "photo"=> ['required' , 'string' ],
             "email"=> ['required' , 'email' ,'unique:users'],
             "password"=> ['required' ,'min:8'],
         ]);

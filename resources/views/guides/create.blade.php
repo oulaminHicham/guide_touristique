@@ -68,34 +68,41 @@
 <body>
     <div class="container">
         <h1>Add Guide</h1>
-        <form action="{{ route('guides.store') }}" method="POST">
+        <div>
+            @isset($erros)
+                @foreach ($errors as $error)
+                    <div class="alert alert-danger">{{$error}}</div>
+                @endforeach
+            @endisset
+        </div>
+        <form action="{{route('guides.store') }}" method="POST">
             @csrf
             <label for="name">Name</label>
-            <input type="text" id="name" name="name" required>
+            <input type="text" id="name" name="name"  value="{{old('name')}}">
 
             <label for="prenom">Prenom</label>
-            <input type="text" id="prenom" name="prenom" required>
+            <input type="text" id="prenom" name="prenom"  value="{{old('prenom')}}">
 
             <label for="username">Username</label>
-            <input type="text" id="username" name="username" required>
+            <input type="text" id="username" name="username"  value="{{old('username')}}">
 
             <label for="date_naissance">Date de naissance</label>
-            <input type="date" id="date_naissance" name="date_naissance" required>
+            <input type="date" id="date_naissance" name="date_naissance"  value="{{old('date_naissance')}}">
 
             <label for="sertificat">Sertificat</label>
-            <input type="file" id="sertificat" name="sertificat" required>
+            <input type="file" id="sertificat" name="sertificat"  value="{{old('sertificat')}}">
 
             <label for="cine">Cine</label>
-            <input type="text" id="cine" name="cine" required>
+            <input type="text" id="cine" name="cine"  value="{{old('cine')}}">
 
             <label for="photo">Photo</label>
-            <input type="file" id="photo" name="photo" required>
+            <input type="file" id="photo" name="photo"  value="{{old('photo')}}">
 
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email"  value="{{old('email')}}">
 
             <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
+            <input type="password" id="password" name="password"  value="{{old('password')}}">
 
             <input type="submit" value="Submit">
         </form>
