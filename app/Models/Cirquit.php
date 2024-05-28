@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Circuit extends Model
+class Cirquit extends Model
 {
     use HasFactory;
     protected $fillable = [
         'photos',
-        'description',
-        'price',
+        'descreption',
+        'prix',
         'guide_id',
-        'destination_id',
+        'distination_id',
     ];
 }

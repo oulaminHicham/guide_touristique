@@ -16,7 +16,7 @@ return new class extends Migration
             $table->date('date');
             $table->string('distination');
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('circuit_id')->constrained();
+            $table->foreignId('cirquit_id')->constrained();
             $table->timestamps();
         });
     }

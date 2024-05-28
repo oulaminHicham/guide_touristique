@@ -31,7 +31,7 @@ class ClientController extends Controller
             "email"=> ['required' , 'email' ,'unique:users'],
             "password"=> ['required' ,'min:8'],
         ]);
-        $request['password']=crypt($request->password);
+        $request['password']=bcrypt($request->password);
         $data = User :: create($request->all());
         return new ClientResource($data);
     }

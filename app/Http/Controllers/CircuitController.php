@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Circuit;
+use App\Models\Cirquit;
 use Illuminate\Http\Request;
 
 class CircuitController extends Controller
@@ -12,7 +12,9 @@ class CircuitController extends Controller
      */
     public function index()
     {
-        $circuits = Circuit::all();
+        
+        $circuits = Cirquit::all();
+
         return view("circuits.circuitsList", compact("circuits"));
     }
 
@@ -37,7 +39,7 @@ class CircuitController extends Controller
             'destination_id' => 'required|integer',
         ]);
 
-        Circuit::create($request->all());
+        Cirquit::create($request->all());
         return redirect()->route('circuits.index');
     }
 
@@ -46,7 +48,7 @@ class CircuitController extends Controller
      */
     public function edit(string $id)
     {
-        $circuit = Circuit::findOrFail($id);
+        $circuit = Cirquit::findOrFail($id);
         return view('circuits.edit', compact('circuit'));
     }
 
@@ -55,7 +57,7 @@ class CircuitController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $circuit = Circuit::findOrFail($id);
+        $circuit = Cirquit::findOrFail($id);
         $request->validate([
             'photos' => 'required|image',
             'description' => 'required|string',
@@ -73,7 +75,7 @@ class CircuitController extends Controller
      */
     public function destroy(string $id)
     {
-        $circuit = Circuit::findOrFail($id);
+        $circuit = Cirquit::findOrFail($id);
         $circuit->delete();
         return redirect()->route('circuits.index');
     }

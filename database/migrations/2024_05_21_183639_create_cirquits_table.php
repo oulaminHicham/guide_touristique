@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('circuits', function (Blueprint $table) {
+        Schema::create('cirquits', function (Blueprint $table) {
             $table->id();
             $table->string('photos');
-            $table->string('description');
-            $table->float('price');
+            $table->string('descreption');
+            $table->float('prix');
             $table->unsignedBigInteger('guide_id');
-            $table->foreign('user_id')->constrained();
-            $table->foreignId('destination_id')->constrained();
-            $table->foreign('guide_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('guide_id')->references('id')->on('users')->onDelete('cascade'); 
+            $table->foreignId('distination_id')->constrained();
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('circuits');
+        Schema::dropIfExists('cirquits');
     }
 };
