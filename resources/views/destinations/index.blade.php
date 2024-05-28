@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste des Destinations</title>
-    
+
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
@@ -97,7 +97,8 @@
 </head>
 
 <body>
-
+    @extends('layout')
+    @section('content')
     <div class="container mt-5">
         <h1 class="text-center mb-4">Liste des Destinations</h1>
         <div class="row">
@@ -116,12 +117,12 @@
                         <div class="card-body">
                             <h5 class="card-title destination-name">{{ $distination->nom }}</h5>
                             <div class="dropdown">
-                                <form action="{{ route('distinations.destroy', $distination->id) }}" method="POST"onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette destination ?');">
+                                <form action="{{ route('destinations.destroy', $distination->id) }}" method="POST"onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette destination ?');">
                                     @csrf
                                     @method('delete')
                                     <div class="dropdown-content">
                                         <button type="submit">Supprimer</button>
-                                        <a href="{{ route('distinations.edit', $distination->id) }}">Modifier</a>
+                                        <a href="{{ route('destinations.edit', $distination->id) }}">Modifier</a>
                                     </div>
                                 </form>
                                 <span class="dropbtn"><img style="width:30px" src="trois-points (1).png"  alt="img"></span>
@@ -137,13 +138,14 @@
 
 
 
-    <a class="btn btn-primary add-button" href="{{route("distinations.create")}}">+</a>
+    <a class="btn btn-primary add-button" href="{{route("destinations.create")}}">+</a>
 
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    @endsection
 </body>
 
 </html>

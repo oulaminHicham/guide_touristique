@@ -57,7 +57,7 @@ class CircuitController extends Controller
     {
         $circuit = Circuit::findOrFail($id);
         $request->validate([
-            'photos' => 'required|string',
+            'photos' => 'required|image',
             'description' => 'required|string',
             'price' => 'required|numeric',
             'guide_id' => 'required|integer',

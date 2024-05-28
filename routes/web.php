@@ -16,5 +16,5 @@ Route::resource('circuits',CircuitController::class);
 
 
 
-Route::resource("distinations",DistinationController::class);
+Route::resource("destinations",DistinationController::class);
 

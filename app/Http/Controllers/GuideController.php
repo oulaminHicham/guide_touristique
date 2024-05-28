@@ -15,11 +15,11 @@ class GuideController extends Controller
      */
     public function index()
     {
-        $guide=User::where('isGuide' , '=' , 1)->get();
-        
-        return GuideResource::collection($guide);
+        $users=User::where('isGuide' , '=' , 1)->get();
+
+        return view("guides.guidesList", compact("users"));
     }
-    /** 
+    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
@@ -37,8 +37,8 @@ class GuideController extends Controller
         ]);
         $request['isGuide'] = 1 ;
         $request['password']=bcrypt($request->password);
-        $data =  User::create($request->all());
-        return new GuideResource($data);
+        User::create($request->all());
+        return redirect()->route('circuits.index');
     }
     /**
      * Update the specified resource in storage.
@@ -58,7 +58,7 @@ class GuideController extends Controller
             "password"=> ['required' , 'password' ,'min:8'],
         ]);
         $guide->update($request->all());
-        return new GuideResource($guide);
+        return redirect()->route('circuits.index');
     }
     /**
      * Remove the specified resource from storage.
@@ -67,7 +67,7 @@ class GuideController extends Controller
     {
         $guide = User::findOrFail($id);
         $guide->delete();
-        return 204 ;
+        return redirect()->route('circuits.index') ;
     }
     }
 
