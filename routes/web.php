@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\CircuitController;
+use App\Http\Controllers\DistinationController;
 use App\Http\Controllers\GuideController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -14,4 +14,7 @@ Route::post('/guides/{id}/accept', [GuideController::class, 'acceptGuide'])->nam
 Route::resource('guides', GuideController::class);
 Route::resource('circuits',CircuitController::class);
 
+
+
+Route::resource("distinations",DistinationController::class);
 

@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call([
             DistinationTableSeeder::class,
-            GuideTableSeeder::class ,
+            // GuideTableSeeder::class ,
             CirquitTableSeeder::class,
             
         ]);
