@@ -38,7 +38,11 @@ class GuideController extends Controller
         $request['isGuide'] = 1 ;
         $request['password']=bcrypt($request->password);
         User::create($request->all());
-        return redirect()->route('circuits.index');
+        return redirect()->route('guides.index');
+    }
+    public function create()
+    {
+        return view("guides.create");
     }
     /**
      * Update the specified resource in storage.
@@ -58,7 +62,7 @@ class GuideController extends Controller
             "password"=> ['required' , 'password' ,'min:8'],
         ]);
         $guide->update($request->all());
-        return redirect()->route('circuits.index');
+        return redirect()->route('guides.index');
     }
     /**
      * Remove the specified resource from storage.
@@ -67,7 +71,7 @@ class GuideController extends Controller
     {
         $guide = User::findOrFail($id);
         $guide->delete();
-        return redirect()->route('circuits.index') ;
+        return redirect()->route('guides.index') ;
     }
     }
 
