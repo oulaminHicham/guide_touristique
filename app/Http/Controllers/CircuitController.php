@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Circuit;
-use App\Models\Cirquit;
 use Illuminate\Http\Request;
 
 class CircuitController extends Controller
@@ -11,11 +10,10 @@ class CircuitController extends Controller
     /**
      * Display a listing of the resource.
      */
-    
     public function index()
     {
-        $circuit = Circuit::all();
-        return view("circuits.circuitsList", compact("circuit"));
+        $circuits = Circuit::all();
+        return view("circuits.circuitsList", compact("circuits"));
     }
 
     /**
@@ -30,27 +28,17 @@ class CircuitController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
-    $request->validate([
-        'photos' => 'required',
-        'descreption' => 'required',
-        'price' => 'required',
-        'guide_id' => 'required',
-        'destination_id' => 'required',
-    ]);
-
-    $data = Circuit::create($request->all());
-    $data->save();
-    return redirect()->route('circuits.index');
-}
-
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
     {
-        //
+        $request->validate([
+            'photos' => 'required|string',
+            'description' => 'required|string',
+            'price' => 'required|numeric',
+            'guide_id' => 'required|integer',
+            'destination_id' => 'required|integer',
+        ]);
+
+        Circuit::create($request->all());
+        return redirect()->route('circuits.index');
     }
 
     /**
@@ -58,7 +46,8 @@ class CircuitController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $circuit = Circuit::findOrFail($id);
+        return view('circuits.edit', compact('circuit'));
     }
 
     /**
@@ -66,7 +55,17 @@ class CircuitController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $circuit = Circuit::findOrFail($id);
+        $request->validate([
+            'photos' => 'required|string',
+            'description' => 'required|string',
+            'price' => 'required|numeric',
+            'guide_id' => 'required|integer',
+            'destination_id' => 'required|integer',
+        ]);
+
+        $circuit->update($request->all());
+        return redirect()->route('circuits.index');
     }
 
     /**

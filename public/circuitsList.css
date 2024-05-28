@@ -46,10 +46,10 @@
     justify-content: space-between;
   }
    */
-   .container{
+   .container-card{
     background-color: #edf2f5;
     width: 16em;
-    height: 15em;
+    height: 18em;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -69,15 +69,25 @@
    }
    .image--card img{
     width: 100%;
-    height: 240px;
+    height: 200px;
     object-fit: cover;
    }
    .content--card h3{
-    text-align: center;
+     text-align: center;
       text-transform: uppercase;
       font-size: clamp(14px,2vw,20px);
       font-weight: 600;
       color: black;
       width: 100%;
-      height: 5em;
+      height: 1.5em;
+
+   }
+   .content--card span{
+    display: flex;
+    margin-left: 25px;
+    gap: 10px;
+
+   }
+   .content--card{
+    margin-bottom: 20px;
    }

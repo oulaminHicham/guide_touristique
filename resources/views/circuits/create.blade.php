@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Circuit</title>
-    <link rel="stylesheet" href="dashboard.css">
-    <style>
+        <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f5f5f5;
@@ -71,16 +70,15 @@
         }
 
         .form-group button[type="submit"]:hover {
-            background-color: #45a049;
+            background-color: #6a4224;
         }
     </style>
 </head>
 <body>
     <div class="form-container">
         <h1>Create Circuit</h1>
-        <form action="{{ route('circuits.store') }}" method="POST">
+        <form action="{{ route('circuits.store') }}" method="POST" >
             @csrf
-
             <div class="form-group">
                 <label for="photos">Photos:</label>
                 <input type="file" id="photos" name="photos" required>
@@ -95,11 +93,11 @@
             </div>
             <div class="form-group">
                 <label for="guide_id">Guide ID:</label>
-                <input type="text" id="guide_id" name="guide_id" required>
+                <input type="number" id="guide_id" name="guide_id" required>
             </div>
             <div class="form-group">
                 <label for="destination_id">Destination ID:</label>
-                <input type="text" id="destination_id" name="destination_id" required>
+                <input type="number" id="destination_id" name="destination_id" required>
             </div>
             <div class="form-group">
                 <button type="submit">Submit</button>
