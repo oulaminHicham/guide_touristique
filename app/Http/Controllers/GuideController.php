@@ -19,6 +19,11 @@ class GuideController extends Controller
 
         return view("guides.guidesList", compact("users"));
     }
+    public function edit(string $id)
+    {
+        $user = User::findOrFail($id);
+        return view('guides.edit', compact('user'));
+    }
     /**
      * Store a newly created resource in storage.
      */
@@ -75,4 +80,3 @@ class GuideController extends Controller
         return redirect()->route('guides.index') ;
     }
     }
-

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ReservationResource;
@@ -14,7 +14,17 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        return ReservationResource::collection(Reservation::all());
+        $reserve = Reservation::all();
+        return view('reservation.index', compact('reserve'));
+    }
+    public function create()
+    {
+        return view('reservation.create');
+    }
+    public function edit(string $id)
+    {
+        $reserve = Reservation::findOrFail($id);
+        return view('reservation.edit', compact('reserve'));
     }
     /**
      * Store a newly created resource in storage.
@@ -27,8 +37,8 @@ class ReservationController extends Controller
             "user_id"=> ['required','integer','exists:users,id'],
             "cirquit_id"=> ['required','integer','exists:cirquits,id'],
         ]);
-        $resevation = Reservation::create($request->all());
-        return new ReservationResource($resevation);
+        Reservation::create($request->all());
+        return redirect()->route('reservation.index');
     }
     /**
      * Update the specified resource in storage.
@@ -43,7 +53,7 @@ class ReservationController extends Controller
         ]);
         $reservation = Reservation::find($id);
         $reservation->update($request->all());
-        return new  ReservationResource($reservation);
+        return redirect()->route('reservation.index');
     }
     /**
      * Remove the specified resource from storage.
@@ -52,6 +62,6 @@ class ReservationController extends Controller
     {
         $reservation = Reservation::find($id);
         $reservation->delete();
-        return 204 ;
+        return redirect()->route('reservation.index');
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\CircuitController;
 use App\Http\Controllers\DistinationController;
 use App\Http\Controllers\GuideController;
@@ -14,7 +15,7 @@ Route::post('/guides/{id}/accept', [GuideController::class, 'acceptGuide'])->nam
 Route::resource('guides', GuideController::class);
 Route::resource('circuits',CircuitController::class);
 
-
+Route::resource('reservation',ReservationController::class);
 
 Route::resource("destinations",DistinationController::class);
 
