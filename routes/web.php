@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\CirquitController;
 use App\Http\Controllers\DistinationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;

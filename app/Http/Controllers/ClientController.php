@@ -72,7 +72,7 @@ class ClientController extends Controller
         return 204 ;
     }
 
-         // CRUD de client  
+         // CRUD de client
 
     public function aficher(){
         $client =User::where("isGuide" , "=" ,0)->get();
@@ -124,15 +124,12 @@ class ClientController extends Controller
             "email" => ['required', 'email', 'unique:users'],
             "password" => ['required', 'min:8'],
         ]);
-    
-        // التعامل مع رفع الملفات وتخزينها
+
         $sertificatPath = $request->file('sertificat')->store('certificates');
         $photoPath = $request->file('photo')->store('photos');
-    
-        // تشفير كلمة المرور
+
         $hashedPassword = bcrypt($request->password);
-    
-        // إنشاء المستخدم
+
         User::create([
             "name" => $request->name,
             "prenom" => $request->prenom,
@@ -144,10 +141,10 @@ class ClientController extends Controller
             "email" => $request->email,
             "password" => $hashedPassword,
         ]);
-    
+
         return redirect()->route('client.aficherClient');
     }
-    
+
 
     public function ditail( string $id){
         $client=User::find($id);
@@ -158,7 +155,7 @@ class ClientController extends Controller
         return view('client.edite',compact('client'));
 
     }
-    
+
     public function modifier(Request $request, $id){
 
         $request->validate([
@@ -187,6 +184,7 @@ class ClientController extends Controller
         return redirect()->route('client.aficherClient');
 
     }
+    // الشواء
 
     public function supprimer($id){
         $client=User::find($id);

@@ -13,7 +13,6 @@ class CirquitController extends Controller
     public function index()
     {
         return CirquitResource::collection(Cirquit::all());
-
     }
 
     /**
@@ -32,23 +31,6 @@ class CirquitController extends Controller
         $data = Cirquit::create($request->all());
         return new CirquitResource($data);
     }
-
-    /**
-     * Display the resource.
-     */
-    public function show()
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the resource.
-     */
-    public function edit()
-    {
-        //
-    }
-
     /**
      * Update the resource in storage.
      */
@@ -65,10 +47,7 @@ class CirquitController extends Controller
         $cirquit = Cirquit::findOrFail($id);
         $cirquit -> update($request->all());
         return new CirquitResource($cirquit);
-
-
     }
-
     /**
      * Remove the resource from storage.
      */
