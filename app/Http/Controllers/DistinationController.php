@@ -19,14 +19,14 @@ class DistinationController extends Controller
     public function index()
     {
         $distinations = Distination::all();
-        return view("distinations.index", compact("distinations"));
+        return view("destinations.index", compact("distinations"));
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function create(){
-        return view("distinations.create");
+        return view("destinations.create");
     }
 
 
@@ -42,7 +42,7 @@ class DistinationController extends Controller
         $distination->save();
 
         $distination->save();
-        return redirect()->route('distinations.index')->with('success', 'La réunion a été créée avec succès.');
+        return redirect()->route('destinations.index')->with('success', 'La réunion a été créée avec succès.');
     }
     /**
      * Update the specified resource in storage.
@@ -71,20 +71,20 @@ class DistinationController extends Controller
     public function edit($id)
     {
         $destination = Distination::findOrFail($id);
-        return view('distinations.edite', compact('destination'));
+        return view('destinations.edite', compact('destination'));
     }
 
     public function update(Request $request, $id)
     {
         $destination = Distination::findOrFail($id);
         $destination->update($request->all());
-        return redirect()->route('distinations.index')->with('success', 'Destination mise à jour avec succès');
+        return redirect()->route('destinations.index')->with('success', 'Destination mise à jour avec succès');
     }
 
     public function destroy($id)
     {
         $destination = Distination::findOrFail($id);
         $destination->delete();
-        return redirect()->route('distinations.index')->with('success', 'Destination supprimée avec succès');
+        return redirect()->route('destinations.index')->with('success', 'Destination supprimée avec succès');
     }
 }

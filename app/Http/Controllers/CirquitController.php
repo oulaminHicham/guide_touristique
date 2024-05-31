@@ -22,12 +22,21 @@ class CirquitController extends Controller
     {
         $request->validate([
             "descreption"=> ['required' , 'string' , 'max:50'],
-            "photo"=> ['required' , 'string' , 'image'],
+            "photos"=> ['required' , 'string' ],
             "prix"=> ['required' , 'float'],
             "guide_id"=> ['required' , 'exists:guides,id'],
             "distination_id"=> ['required' , 'exists:distinations,id'],
         ]);
-
+        /*
+            #### use this object to test :
+            {
+                "descreption":"good cirquit" ,
+                "photos":"img.png" ,
+                "prix":2452,
+                "guide_id":2 ,
+                "distination_id":1
+            }
+        */
         $data = Cirquit::create($request->all());
         return new CirquitResource($data);
     }
@@ -44,6 +53,16 @@ class CirquitController extends Controller
             "guide_id"=> ['required' , 'exists:guides,id'],
             "distination_id"=> ['required' , 'exists:distinations,id'],
         ]);
+        /*
+            #### use this object to test :
+            {
+                "descreption":"good cirquit has been changed" ,
+                "photos":"img.png" ,
+                "prix":677686,
+                "guide_id":2 ,
+                "distination_id":1
+            }
+        */
         $cirquit = Cirquit::findOrFail($id);
         $cirquit -> update($request->all());
         return new CirquitResource($cirquit);

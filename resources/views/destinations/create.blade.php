@@ -9,10 +9,10 @@
 
 </head>
 <body>
-    <form style="width: 80%;border-radius: 9px;border: solid 1px #dfdfdf;margin: auto;padding: 39px;" method='post' action="{{route('distinations.store')}}" class="my-5 bg-light-subtle">
+    <form style="width: 80%;border-radius: 9px;border: solid 1px #dfdfdf;margin: auto;padding: 39px;" method='post' action="{{route('destinations.store')}}" class="my-5 bg-light-subtle">
         @csrf
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <a class=" nav-link" href="{{route("distinations.index")}}" aria-hidden="true">&times;</a>
+                        <a class=" nav-link" href="{{route("destinations.index")}}" aria-hidden="true">&times;</a>
         </button>
         <h1>ajouter un distination :</h1>
         <label >Nom </label>

@@ -8,47 +8,52 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
-class GuideController extends Controller
+class GuideeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $users=User::where('isGuide' , '=' , 1)->get();
-
-        return view("guides.guidesList", compact("users"));
+        $guide=User::where('isGuide' , '=' , 1)->get();
+        
+        return GuideResource::collection($guide);
     }
-    public function edit(string $id)
-    {
-        $user = User::findOrFail($id);
-        return view('guides.edit', compact('user'));
-    }
-    /**
+    /** 
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         $request->validate([
             "name"=> ['required' , 'string' ],
             "prenom"=> ['required' , 'string' ],
             "username"=> ['required' , 'string' ],
             "date_naissance"=> ['required' ,'date' ],
-            "sertificat"=> ['required' , 'string' ],
+            "sertificat"=> ['required' , 'string','image' ],
             "cine"=> ['required' , 'string' ,'max:8', 'min:8'],
-            "photo"=> ['required' , 'string' ],
+            "photo"=> ['required' , 'string' ,'image'],
             "email"=> ['required' , 'email' ,'unique:users'],
             "password"=> ['required' ,'min:8'],
         ]);
+
+        /*
+            ## use this object to test
+            {
+                "name":"Mohammed" ,
+                "prenom" :"alami" ,
+                "username":"Mohammed_alami",
+                "date_naissance":"2000-03-03" ,
+                "sertificat":"certifie.png" ,
+                "cine":"gg452367" ,
+                "photo":"profile.png" ,
+                "email":"alami@gmail.com",
+                "password":"12345678"
+            }
+        */
         $request['isGuide'] = 1 ;
         $request['password']=bcrypt($request->password);
-        User::create($request->all());
-        return redirect()->route('guides.index');
-    }
-    public function create()
-    {
-        return view("guides.create");
+        $data =  User::create($request->all());
+        return new GuideResource($data);
     }
     /**
      * Update the specified resource in storage.
@@ -67,8 +72,22 @@ class GuideController extends Controller
             "email"=> ['required' , 'email' ,Rule::unique('users')->ignore($guide->id)],
             "password"=> ['required' , 'password' ,'min:8'],
         ]);
+                /*
+            ## use this object to test
+            {
+                "name":"Mohammed changed" ,
+                "prenom" :"alami" ,
+                "username":"Mohammed_alami changed",
+                "date_naissance":"2000-05-03" ,
+                "sertificat":"certie.png" ,
+                "cine":"gg452677" ,
+                "photo":"profe.png" ,
+                "email":"alami@gmail.com",
+                "password":"123456784774"
+            }
+        */
         $guide->update($request->all());
-        return redirect()->route('guides.index');
+        return new GuideResource($guide);
     }
     /**
      * Remove the specified resource from storage.
@@ -77,6 +96,7 @@ class GuideController extends Controller
     {
         $guide = User::findOrFail($id);
         $guide->delete();
-        return redirect()->route('guides.index') ;
+        return 204 ;
     }
     }
+
