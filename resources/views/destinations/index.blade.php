@@ -117,7 +117,7 @@
                         <div class="card-body">
                             <h5 class="card-title destination-name">{{ $distination->nom }}</h5>
                             <div class="dropdown">
-                                <form action="{{ route('destinations.destroy', $distination->id) }}" method="POST"onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette destination ?');">
+                                <form action="{{ route('destinations.destroy', $distination->id) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette destination ?');">
                                     @csrf
                                     @method('delete')
                                     <div class="dropdown-content">
