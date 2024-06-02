@@ -17,7 +17,7 @@ class GuideController extends Controller
     {
         $users=User::where('isGuide' , '=' , 1)->get();
 
-        return view("guides.guidesList", compact("users"));
+        return view("guides.index", compact("users"));
     }
     public function edit(string $id)
     {
@@ -35,16 +35,16 @@ class GuideController extends Controller
             "prenom"=> ['required' , 'string' ],
             "username"=> ['required' , 'string' ],
             "date_naissance"=> ['required' ,'date' ],
-            "sertificat"=> ['required' , 'string' ],
+            "sertificat" => ['required', 'file'],
             "cine"=> ['required' , 'string' ,'max:8', 'min:8'],
-            "photo"=> ['required' , 'string' ],
+            "photo" => ['required', 'file'],
             "email"=> ['required' , 'email' ,'unique:users'],
             "password"=> ['required' ,'min:8'],
         ]);
         $request['isGuide'] = 1 ;
         $request['password']=bcrypt($request->password);
         User::create($request->all());
-        return redirect()->route('guides.index');
+        return redirect()->route('guides.index')->with('success', 'Guide has been created successfully.');
     }
     public function create()
     {
@@ -57,16 +57,17 @@ class GuideController extends Controller
     {
         $guide = User::findOrFail($id);
         $request->validate([
-            "name"=> ['required' , 'string' ],
-            "prenom"=> ['required' , 'string' ],
-            "username"=> ['required' , 'string' ],
-            "date_naissance"=> ['required' ,'date' ],
-            "sertificat"=> ['required' , 'string','image' ],
-            "cine"=> ['required' , 'string' ,'max:8', 'min:8'],
-            "photo"=> ['required' , 'string' ,'image'],
-            "email"=> ['required' , 'email' ,Rule::unique('users')->ignore($guide->id)],
-            "password"=> ['required' , 'password' ,'min:8'],
+            "name"=> ['required', 'string'],
+            "prenom"=> ['required', 'string'],
+            "username"=> ['required', 'string'],
+            "date_naissance"=> ['required', 'date'],
+            "sertificat"=> ['nullable', 'file'], // set to nullable if it's not mandatory to update
+            "cine"=> ['required', 'string', 'max:8', 'min:8'],
+            "photo"=> ['nullable', 'file'], // set to nullable if it's not mandatory to update
+            "email"=> ['required', 'email', Rule::unique('users')->ignore($guide->id)],
+            "password"=> ['nullable', 'min:8'], // set to nullable if it's not mandatory to update
         ]);
+
         $guide->update($request->all());
         return redirect()->route('guides.index');
     }
@@ -77,6 +78,6 @@ class GuideController extends Controller
     {
         $guide = User::findOrFail($id);
         $guide->delete();
-        return redirect()->route('guides.index') ;
+        return redirect()->route('guides.index')->with('success', 'La réunion a été créée avec succès.');
     }
     }

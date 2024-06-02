@@ -86,13 +86,11 @@
                         <div class="card-body" style="display: flex; justify-content:space-between;">
                             <h5 class="card-title destination-name">{{ $distination->nom }}</h5>
                             <div class="dropdown">
-                                <button class="dropbtn">
-                                    <img style="width:30px" src="trois-points (1).png" alt="Options">
-                                </button>
-                                <div class="dropdown-content">
-                                    <form action="{{ route('destinations.destroy', $distination->id) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette destination ?');">
-                                        @csrf
-                                        @method('delete')
+                                <div class="btn fs-4">...</div>
+                                <form action="{{ route('destinations.destroy', $distination->id) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette destination ?');">
+                                    @csrf
+                                    @method('delete')
+                                    <div class="dropdown-content">
                                         <button type="submit">Supprimer</button>
                                         <a href="{{ route('destinations.edit', $distination->id) }}">Modifier</a>
                                     </form>
