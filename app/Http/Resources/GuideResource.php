@@ -16,6 +16,7 @@ class GuideResource extends JsonResource
     {
         return[
             "id"=> $this->id,
+            "prenom"=> $this->prenom,
             "name"=> $this->name,
             "username"=> $this->username,
             "cine"=> $this->cine,
@@ -23,6 +24,7 @@ class GuideResource extends JsonResource
             "date_naissance"=>$this->date_naissance,
             "photo"=>$this->photo,
             "sertificat"=>$this->sertificat,
+            "isGuide"=>$this->isGuide
         ];
     }
 }

@@ -11,6 +11,9 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable ;
 
+    public function cirquits(){
+        return $this->hasMany(Cirquit::class , 'guide_id');
+    }
     /**
      * The attributes that are mass assignable.
      *

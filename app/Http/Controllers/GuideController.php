@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\GuideResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -18,6 +17,11 @@ class GuideController extends Controller
         $users=User::where('isGuide' , '=' , 1)->get();
 
         return view("guides.guidesList", compact("users"));
+    }
+    public function edit(string $id)
+    {
+        $user = User::findOrFail($id);
+        return view('guides.edit', compact('user'));
     }
     /**
      * Store a newly created resource in storage.
@@ -75,4 +79,3 @@ class GuideController extends Controller
         return redirect()->route('guides.index') ;
     }
     }
-
