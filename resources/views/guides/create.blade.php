@@ -75,7 +75,7 @@
                 @endforeach
             @endisset
         </div>
-        <form action="{{route('guides.store') }}" method="POST">
+        <form action="{{route('guides.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <label for="name">Name</label>
             <input type="text" id="name" name="name"  value="{{old('name')}}">

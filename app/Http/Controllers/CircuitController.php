@@ -15,7 +15,7 @@ class CircuitController extends Controller
 
         $circuits = Cirquit::all();
 
-        return view("circuits.circuitsList", compact("circuits"));
+        return view("circuits.index", compact("circuits"));
     }
 
     /**
