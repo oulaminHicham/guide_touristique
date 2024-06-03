@@ -21,7 +21,7 @@
             @foreach ($circuits as $circuit)
             <div class='container-card'>
                 <div class='image--card'>
-                    <img src="{{ asset('images/' .$circuit['photos']) }}" alt="{{ $circuit['descreption'] }}" />
+                    <img src="{{ asset('images/'.$circuit['photos']) }}" alt="{{ $circuit['descreption'] }}" />
                 </div>
                 <div class='content--card'>
                     <h3>{{ $circuit['descreption'] }}</h3>

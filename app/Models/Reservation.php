@@ -14,4 +14,13 @@ class Reservation extends Model
         'user_id',
         'cirquit_id',
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function cirquit()
+    {
+        return $this->belongsTo(Cirquit::class);
+    }
 }

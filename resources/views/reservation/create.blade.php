@@ -62,17 +62,22 @@
         input[type="submit"]:hover {
             background-color: #6a4224;
         }
+
+        .alert-danger {
+            color: red;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Create Reservation</h1>
         <div>
-            @isset($errors)
-                @foreach ($errors as $error)
-                    <div class="alert alert-danger">{{$error}}</div>
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    <div class="alert alert-danger">{{ $error }}</div>
                 @endforeach
-            @endisset
+            @endif
         </div>
         <form action="{{ route('reservation.store') }}" method="POST">
             @csrf
@@ -80,13 +85,25 @@
             <input type="date" id="date" name="date" value="{{ old('date') }}">
 
             <label for="destination">Destination</label>
-            <input type="text" id="destination" name="destination" value="{{ old('destination') }}">
+            <input type="text" id="distination" name="distination" value="{{ old('distination') }}">
 
-            <label for="user_id">User ID</label>
-            <input type="text" id="user_id" name="user_id" value="{{ old('user_id') }}">
+            <label for="user_id">User</label>
+            <select id="user_id" name="user_id">
+                @foreach ($users as $user)
+                    <option value="{{ $user->id }}" {{ old('user_id') == $user->id ? 'selected' : '' }}>
+                        {{ $user->name }}
+                    </option>
+                @endforeach
+            </select>
 
-            <label for="circuit_id">Circuit ID</label>
-            <input type="text" id="circuit_id" name="circuit_id" value="{{ old('circuit_id') }}">
+            <label for="cirquit_id">Circuit</label>
+            <select id="cirquit_id" name="cirquit_id">
+                @foreach ($circuits as $circuit)
+                    <option value="{{ $circuit->id }}" {{ old('cirquit_id') == $circuit->id ? 'selected' : '' }}>
+                        {{ $circuit->descreption }}
+                    </option>
+                @endforeach
+            </select>
 
             <input type="submit" value="Submit">
         </form>

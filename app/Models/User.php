@@ -11,6 +11,9 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable ;
 
+    public function cirquits(){
+        return $this->hasMany(Cirquit::class , 'guide_id');
+    }
     /**
      * The attributes that are mass assignable.
      *
@@ -29,6 +32,10 @@ class User extends Authenticatable
         'photo',
         'password',
     ];
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

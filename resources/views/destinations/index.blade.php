@@ -87,12 +87,16 @@
                             <h5 class="card-title destination-name">{{ $distination->nom }}</h5>
                             <div class="dropdown">
                                 <div class="btn fs-4">...</div>
+<<<<<<< HEAD
                                 <form action="{{ route('destinations.destroy', $distination->id) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette destination ?');">
+=======
+                                <form action="{{ route('distinations.destroy', $distination->id) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette destination ?');">
+>>>>>>> e4248980babb363d82b3250d142ffe4178e56236
                                     @csrf
                                     @method('delete')
                                     <div class="dropdown-content">
                                         <button type="submit">Supprimer</button>
-                                        <a href="{{ route('destinations.edit', $distination->id) }}">Modifier</a>
+                                        <a href="{{ route('distinations.edit', $distination->id) }}">Modifier</a>
                                     </form>
                                 </div>
                             </div>
@@ -102,7 +106,7 @@
             @endforeach
         </div>
     </div>
-    <a class="btn btn-primary add-button" href="{{ route('destinations.create') }}">+</a>
+    <a class="btn btn-primary add-button" href="{{ route('distinations.create') }}">+</a>
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

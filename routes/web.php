@@ -10,7 +10,6 @@ use App\Http\Controllers\ClientController;
 Route::get('/', function () {
     return view('welcome');
 });
-
 // Resourceful routes for guides
 // Route::post('/guides/{id}/accept', [GuideController::class, 'acceptGuide'])->name('guides.acceptGuide');
 
@@ -18,6 +17,16 @@ Route::resource("destinations",DistinationController::class);
 
 Route::resource("reservation",ReservationController::class);
 
+Route::resource("guides",GuideController::class);
+
+Route::resource("circuits",CircuitController::class);
+
+
+Route::resource("distinations",DistinationController::class);
+
+Route::resource("reservation",ReservationController::class);
+
+Route::post('/guides/{id}/accept', [GuideController::class, 'acceptGuide'])->name('guides.acceptGuide');
 Route::resource("guides",GuideController::class);
 
 Route::resource("circuits",CircuitController::class);

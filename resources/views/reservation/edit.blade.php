@@ -1,11 +1,12 @@
-<!DOCTYPE html>
+
+        <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Reservation</title>
     <style>
-        body {
+         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -85,20 +86,32 @@
 
             <div class="form-group">
                 <label for="destination">Destination</label>
-                <input type="text" class="form-control" id="destination" name="destination" value="{{ $reserve->destination }}" required>
+                <input type="text" class="form-control" id="destination" name="destination" value="{{ $reserve->distination }}" required>
             </div>
 
             <div class="form-group">
-                <label for="user_id">User ID</label>
-                <input type="text" class="form-control" id="user_id" name="user_id" value="{{ $reserve->user_id }}" required>
+                <label for="user_id">User</label>
+                <select class="form-control" id="user_id" name="user_id" required>
+                    @foreach ($users as $user)
+                        <option value="{{ $user->id }}" {{ $reserve->user_id == $user->id ? 'selected' : '' }}>
+                            {{ $user->name }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
 
             <div class="form-group">
-                <label for="circuit_id">Circuit ID</label>
-                <input type="text" class="form-control" id="circuit_id" name="circuit_id" value="{{ $reserve->circuit_id }}" required>
+                <label for="cirquit_id">Circuit</label>
+                <select class="form-control" id="cirquit_id" name="cirquit_id" required>
+                    @foreach ($cirquits as $cirquit)
+                        <option value="{{ $cirquit->id }}" {{ $reserve->cirquit_id == $cirquit->id ? 'selected' : '' }}>
+                            {{ $cirquit->descreption }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn-primary">Submit</button>
         </form>
     </div>
 </body>
