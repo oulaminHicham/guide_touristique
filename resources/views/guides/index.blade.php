@@ -24,12 +24,12 @@
                                             <button type="submit"><i class="fas fa-trash-alt"></i></button>
                                         </form>
                                         {{-- botton accepter if accepter = 0 --}}
-                                        @if($user['accepter'] == 0)
-                                        <form action="{{ route('guides.index', $user['id']) }}" method="POST">
+                                        @if($user->accepter == 0)
+                                        <form action="{{ route('guides.acceptGuide', $user->id) }}" method="POST">
                                             @csrf
                                             <button type="submit">Accepter</button>
                                         </form>
-                                    @endif
+                                        @endif
 
                                </div>
                                 </div>
