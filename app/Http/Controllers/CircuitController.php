@@ -59,7 +59,7 @@ class CircuitController extends Controller
     {
         $circuit = Cirquit::findOrFail($id);
         $request->validate([
-            'photos' => 'required|image',
+            'photos' => 'required|string',
             'descreption' => 'required|string',
             'prix' => 'required|numeric',
             'guide_id' => 'required|integer',

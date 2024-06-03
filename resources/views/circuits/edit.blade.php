@@ -76,7 +76,7 @@
 <body>
     <div class="container">
         <h1>Edit Circuit</h1>
-        <form action="{{ route('circuits.update', $circuit->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('circuits.update', $circuit->id) }}" method="POST" >
             @csrf
             @method('PUT')
 
