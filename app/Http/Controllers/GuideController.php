@@ -26,6 +26,11 @@ class GuideController extends Controller
 
         return view("guides.index", compact("users"));
     }
+    public function show($id)
+    {
+        $user = User::findOrFail($id);
+        return view('guides.show', compact('user'));
+    }
     public function edit(string $id)
     {
         $user = User::findOrFail($id);
