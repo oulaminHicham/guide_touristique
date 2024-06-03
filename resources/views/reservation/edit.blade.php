@@ -86,7 +86,7 @@
 
             <div class="form-group">
                 <label for="destination">Destination</label>
-                <input type="text" class="form-control" id="destination" name="destination" value="{{ $reserve->distination }}" required>
+                <input type="text" class="form-control" id="distination" name="distination" value="{{ $reserve->distination }}" required>
             </div>
 
             <div class="form-group">
