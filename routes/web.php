@@ -12,8 +12,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource("distinations",DistinationController::class);
-
+Route::resource("destinations",DistinationController::class);
+Route::resource("circuits",CircuitController::class);
 
 Route::get('/clients', [ClientController::class, 'aficher'])->name('client.aficherClient');
 Route::get('/clients/add', [ClientController::class, 'add'])->name('client.add');
