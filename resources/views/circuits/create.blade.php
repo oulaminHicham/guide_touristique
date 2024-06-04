@@ -72,14 +72,36 @@
         .form-group button[type="submit"]:hover {
             background-color: #6a4224;
         }
-    </style>
+
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="#555" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px"><path d="M7 10l5 5 5-5z"></path></svg>'); /* Add custom arrow */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 18px;
+}
+
+.form-group select:hover {
+    border-color: #999999;
+}
+
+.form-group select:focus {
+    border-color: #666666;
+}
+</style>
 </head>
 <body>
     <div class="form-container">
         <h1>Create Circuit</h1>
         <form action="{{ route('circuits.store') }}" method="POST" >
-            @csrf
-            <div class="form-group">
+             @csrf
+             <div class="form-group">
                 <label for="photos">Photos:</label>
                 <input type="file" id="photos" name="photos" required>
             </div>
@@ -92,12 +114,20 @@
                 <input type="number" id="prix" name="prix" required>
             </div>
             <div class="form-group">
-                <label for="guide_id">Guide ID:</label>
-                <input type="number" id="guide_id" name="guide_id" required>
+                <label for="guide_id">Guide:</label>
+                <select id="guide_id" name="guide_id" required>
+                    @foreach($guid as $guide)
+                        <option value="{{ $guide->id }}">{{ $guide->name }}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="form-group">
-                <label for="destination_id">Destination ID:</label>
-                <input type="number" id="distination_id" name="distination_id" required>
+                <label for="destination">Destination:</label>
+                <select id="distination_id" name="distination_id" required>
+                    @foreach($distinations as $destination)
+                        <option value="{{ $destination->id }}">{{ $destination->nom }}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="form-group">
                 <button type="submit">Submit</button>
@@ -106,3 +136,4 @@
     </div>
 </body>
 </html>
+

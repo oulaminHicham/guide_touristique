@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cirquit;
+use App\Models\Distination;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CircuitController extends Controller
@@ -23,7 +25,9 @@ class CircuitController extends Controller
      */
     public function create()
     {
-        return view("circuits.create");
+        $guid=User::where('isGuide' , '=' , 1)->get();
+        $distinations=Distination::all();
+        return view("circuits.create",compact('guid','distinations'));
     }
 
     /**
@@ -49,7 +53,9 @@ class CircuitController extends Controller
     public function edit(string $id)
     {
         $circuit = Cirquit::findOrFail($id);
-        return view('circuits.edit', compact('circuit'));
+        $guid=User::where('isGuide' , '=' , 1)->get();
+        $distinations=Distination::all();
+        return view('circuits.edit', compact('circuit','guid','distinations'));
     }
 
     /**
@@ -59,7 +65,7 @@ class CircuitController extends Controller
     {
         $circuit = Cirquit::findOrFail($id);
         $request->validate([
-            'photos' => 'required|image',
+            'photos' => 'required|string',
             'descreption' => 'required|string',
             'prix' => 'required|numeric',
             'guide_id' => 'required|integer',
@@ -76,6 +82,7 @@ class CircuitController extends Controller
     public function destroy(string $id)
     {
         $circuit = Cirquit::findOrFail($id);
+        $circuit->reservations()->delete();
         $circuit->delete();
         return redirect()->route('circuits.index');
     }
