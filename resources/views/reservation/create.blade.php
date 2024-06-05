@@ -85,7 +85,12 @@
             <input type="date" id="date" name="date" value="{{ old('date') }}">
 
             <label for="destination">Destination</label>
-            <input type="text" id="distination" name="distination" value="{{ old('distination') }}">
+            {{-- <input type="text" id="distination" name="distination" value="{{ old('distination') }}"> --}}
+            <select name="distination_id" id="">
+                @foreach ($distinations as $distination)
+                    <option value="{{$distination->id}}">{{$distination->nom}}</option>
+                @endforeach
+            </select>
 
             <label for="user_id">User</label>
             <select id="user_id" name="user_id">

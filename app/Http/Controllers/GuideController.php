@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
 class GuideController extends Controller
@@ -47,9 +48,9 @@ class GuideController extends Controller
             "prenom"=> ['required' , 'string' ],
             "username"=> ['required' , 'string' ],
             "date_naissance"=> ['required' ,'date' ],
-            "sertificat" => ['required', 'string'],
+            "sertificat" => ['required'],
             "cine"=> ['required' , 'string' ,'max:8', 'min:8'],
-            "photo" => ['required', 'string'],
+            "photo" => ['required'],
             "email"=> ['required' , 'email' ,'unique:users'],
             "password"=> ['required' ,'min:8'],
         ]);
