@@ -29,13 +29,12 @@ class GuideeController extends Controller
             "prenom"=> ['required' , 'string' ],
             "username"=> ['required' , 'string' ],
             "date_naissance"=> ['required' ,'date' ],
-            "sertificat"=> ['required' , 'string','image' ],
+            "sertificat"=> ['required' , 'string'],
             "cine"=> ['required' , 'string' ,'max:8', 'min:8'],
-            "photo"=> ['required' , 'string' ,'image'],
+            "photo"=> ['required' , 'string' ],
             "email"=> ['required' , 'email' ,'unique:users'],
-            "password"=> ['required' ,'min:8'],
+            "password"=> ['required' ,'min:8' ,'confirmed'],
         ]);
-
         /*
             ## use this object to test
             {
@@ -89,6 +88,15 @@ class GuideeController extends Controller
         $guide->update($request->all());
         return new GuideResource($guide);
     }
+    /**
+     * function to get all the cirquit of user guide given
+    */
+    public function show(String $id){
+        $guide = User::find($id);
+        $cirquits = $guide->cirquits ;
+        return response()->json($cirquits , 200);
+    }
+
     /**
      * Remove the specified resource from storage.
      */

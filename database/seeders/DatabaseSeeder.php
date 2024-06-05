@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             DistinationTableSeeder::class,
             GuideTableSeeder::class ,
             CirquitTableSeeder::class,
-            
+            ResservationTableseeder::class
         ]);
     }
 }

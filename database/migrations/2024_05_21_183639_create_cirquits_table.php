@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('descreption');
             $table->float('prix');
             $table->unsignedBigInteger('guide_id');
-            $table->foreign('guide_id')->references('id')->on('users')->onDelete('cascade'); 
-            $table->foreignId('distination_id')->constrained();
+            $table->foreign('guide_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade'); 
+            $table->foreignId('distination_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

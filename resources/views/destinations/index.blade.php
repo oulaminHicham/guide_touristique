@@ -70,8 +70,8 @@
 <body>
     @extends('layout')
     @section('content')
-    <div class="container-fluid mt-5">
-        <h1 class="text-center mb-4">Liste des Destinations</h1>
+    <div class="container-fluid ">
+        <h1 class="text-center ">Liste des Destinations</h1>
         <div class="row">
             @foreach ($distinations as $distination)
                 <div class="col-lg-4 mt-3">
@@ -86,15 +86,15 @@
                         <div class="card-body" style="display: flex; justify-content:space-between;">
                             <h5 class="card-title destination-name">{{ $distination->nom }}</h5>
                             <div class="dropdown">
-                                <button class="dropbtn">
-                                    <img style="width:30px" src="trois-points (1).png" alt="Options">
-                                </button>
-                                <div class="dropdown-content">
-                                    <form action="{{ route('destinations.destroy', $distination->id) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette destination ?');">
-                                        @csrf
-                                        @method('delete')
+                                <div class="btn fs-4">...</div>
+
+                                <form action="{{ route('distinations.destroy', $distination->id) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette destination ?');">
+
+                                    @csrf
+                                    @method('delete')
+                                    <div class="dropdown-content">
                                         <button type="submit">Supprimer</button>
-                                        <a href="{{ route('destinations.edit', $distination->id) }}">Modifier</a>
+                                        <a href="{{ route('distinations.edit', $distination->id) }}">Modifier</a>
                                     </form>
                                 </div>
                             </div>
@@ -104,7 +104,7 @@
             @endforeach
         </div>
     </div>
-    <a class="btn btn-primary add-button" href="{{ route('destinations.create') }}">+</a>
+    <a class="btn btn-primary add-button" href="{{ route('distinations.create') }}">+</a>
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

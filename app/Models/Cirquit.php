@@ -15,4 +15,8 @@ class Cirquit extends Model
         'guide_id',
         'distination_id',
     ];
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
 }
