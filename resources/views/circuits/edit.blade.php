@@ -5,133 +5,122 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Circuit</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
 
-        .form-container {
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            margin-top: 90px;
-            width: 600px;
-            max-width: 100%;
-        }
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-        .form-container h1 {
-            text-align: center;
-            color: #333333;
-        }
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
+    .form-container {
+        margin: 0 auto;
+    }
 
-        .form-group label {
-            font-weight: bold;
-            color: #555555;
-            display: block;
-            margin-bottom: 5px;
-        }
+    .form-group {
+        margin-bottom: 15px;
+    }
 
-        .form-group input[type="text"],
-        .form-group input[type="number"],
-        .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #dddddd;
-            border-radius: 5px;
-            outline: none;
-        }
+    .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
 
-        .form-group textarea {
-            height: 100px;
-            resize: none;
-        }
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
 
-        .form-group button[type="submit"] {
-            background-color: #bc8643;
-            color: #ffffff;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            cursor: pointer;
-            display: block;
-            width: 100%;
-        }
+    .btn-primary {
+        background-color: #bc8643;
+        border: none;
+        padding: 12px 20px;
+        cursor: pointer;
+        color: white;
+        width: 100%;
+        font-size: 16px;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+    }
 
-        .form-group button[type="submit"]:hover {
-            background-color: #6a4224;
-        }
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
 
-        .form-group select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #dddddd;
-            border-radius: 5px;
-            outline: none;
-            appearance: none;
-            -webkit-appearance: none;
-            background-image: url('data:image/svg+xml;utf8,<svg fill="#555" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="18px" height="18px"><path d="M7 10l5 5 5-5z"></path></svg>'); /* Add custom arrow */
-            background-repeat: no-repeat;
-            background-position: right 10px center;
-            background-size: 18px;
-        }
+    .alert {
+        margin-top: 10px;
+        color: red;
+    }
+</style>
 
-        .form-group select:hover {
-            border-color: #999999;
-        }
 
-        .form-group select:focus {
-            border-color: #666666;
-        }
-    </style>
 </head>
 <body>
-    <div class="form-container">
+    <div class="container">
         <h1>Edit Circuit</h1>
-        <form action="{{ route('circuits.update', $circuit->id) }}" method="POST" >
+        <form action="{{ route('circuits.update', $circuit->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
+
             <div class="form-group">
-                <label for="photos">Photos:</label>
-                <input type="file"id="photos" name="photos" value="{{ old('photos', $circuit->photos)}}" required>
+                <label for="photos">Photos</label>
+                <input type="file" class="form-control" id="photos" name="photos" value="{{ old('photos', $circuit->photos) }}">
+                @if ($errors->has('photos'))
+                    <div class="alert">{{ $errors->first('photos') }}</div>
+                @endif
             </div>
+
             <div class="form-group">
-                <label for="description">Description:</label>
-                <textarea id="descreption" name="descreption"  required>{{ old('descreption', $circuit->descreption) }}</textarea>
+                <label for="description">Description</label>
+                <input type="text" class="form-control" id="descreption" name="descreption" value="{{ old('descreption', $circuit->descreption) }}">
+                @if ($errors->has('descreption'))
+                    <div class="alert">{{ $errors->first('descreption') }}</div>
+                @endif
             </div>
+
             <div class="form-group">
-                <label for="price">Price:</label>
-                <input type="number" id="prix" name="prix" value="{{ old('prix', $circuit->prix) }}" required>
+                <label for="prix">Prix</label>
+                <input type="number" class="form-control" id="prix" name="prix" value="{{ old('prix', $circuit->prix) }}">
+                @if ($errors->has('prix'))
+                    <div class="alert">{{ $errors->first('prix') }}</div>
+                @endif
             </div>
+
             <div class="form-group">
-                <label for="guide_id">Guide:</label>
-                <select id="guide_id" name="guide_id" required>
-                    @foreach($guid as $guide)
-                        <option value="{{ $guide->id }}" {{ $circuit->guide_id == $guide->id ? 'selected' : '' }}>{{ $guide->name }}</option>
-                    @endforeach
-                </select>
+                <label for="guide_id">Guide ID</label>
+                <input type="number" class="form-control" id="guide_id" name="guide_id" value="{{ old('guide_id', $circuit->guide_id) }}">
+                @if ($errors->has('guide_id'))
+                    <div class="alert">{{ $errors->first('guide_id') }}</div>
+                @endif
             </div>
+
             <div class="form-group">
-                <label for="distination_id">Destination:</label>
-                <select id="distination_id" name="distination_id" required>
-                    @foreach($distinations as $destination)
-                        <option value="{{ $destination->id }}" {{ $circuit->distination_id == $destination->id ? 'selected' : '' }}>{{ $destination->nom }}</option>
-                    @endforeach
-                </select>
+                <label for="distination_id">Destination ID</label>
+                <input type="number" class="form-control" id="distination_id" name="distination_id" value="{{ old('distination_id', $circuit->distination_id) }}">
+                @if ($errors->has('distination_id'))
+                    <div class="alert">{{ $errors->first('distination_id') }}</div>
+                @endif
             </div>
-            <div class="form-group">
-                <button type="submit">Update Circuit</button>
-            </div>
+
+            <button type="submit" class="btn btn-primary">Update Circuit</button>
         </form>
     </div>
 </body>

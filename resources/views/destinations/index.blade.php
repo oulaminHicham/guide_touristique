@@ -70,8 +70,8 @@
 <body>
     @extends('layout')
     @section('content')
-    <div class="container-fluid ">
-        <h1 class="text-center ">Liste des Destinations</h1>
+    <div class="container-fluid mt-5">
+        <h1 class="text-center mb-4">Liste des Destinations</h1>
         <div class="row">
             @foreach ($distinations as $distination)
                 <div class="col-lg-4 mt-3">
@@ -87,9 +87,11 @@
                             <h5 class="card-title destination-name">{{ $distination->nom }}</h5>
                             <div class="dropdown">
                                 <div class="btn fs-4">...</div>
-
+<<<<<<< HEAD
+                                <form action="{{ route('destinations.destroy', $distination->id) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette destination ?');">
+=======
                                 <form action="{{ route('distinations.destroy', $distination->id) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette destination ?');">
-
+>>>>>>> e4248980babb363d82b3250d142ffe4178e56236
                                     @csrf
                                     @method('delete')
                                     <div class="dropdown-content">

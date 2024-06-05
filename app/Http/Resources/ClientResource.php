@@ -23,8 +23,9 @@ class ClientResource extends JsonResource
             "date_naissance"=>$this->date_naissance,
             "cine"=>$this->cin,
             "photo"=>$this->photo,
-            "password"=>$this->password,
-            "isGuide"=>$this->isGuide
+            "password"=>$this->password
+
+
         ];
     }
 }

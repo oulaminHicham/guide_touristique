@@ -86,12 +86,7 @@
 
             <div class="form-group">
                 <label for="destination">Destination</label>
-                {{-- <input type="text" class="form-control" id="distination" name="distination" value="{{ $reserve->distination }}" required> --}}
-                <select name="distination_id" id="">
-                    @foreach ($distinations as $distination)
-                        <option @selected($distination->id == $reserve->distination->id) value="{{$distination->id}}">{{$distination->nom}}</option>
-                    @endforeach
-                </select>
+                <input type="text" class="form-control" id="destination" name="destination" value="{{ $reserve->distination }}" required>
             </div>
 
             <div class="form-group">

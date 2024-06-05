@@ -104,7 +104,7 @@
                 @foreach($reservations as $reservation)
                 <tr>
                     <td>{{ $reservation->date }}</td>
-                    <td>{{ $reservation->distination->nom }}</td>
+                    <td>{{ $reservation->distination }}</td>
                     <td>{{ $reservation->user->name }}</td>
                     <td>{{ $reservation->cirquit->descreption }}</td>
                     <td>

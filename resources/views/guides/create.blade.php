@@ -69,14 +69,13 @@
     <div class="container">
         <h1>Add Guide</h1>
         <div>
-            @isset($errors)
-                @foreach ($errors->all() as $error)
+            @isset($erros)
+                @foreach ($errors as $error)
                     <div class="alert alert-danger">{{$error}}</div>
                 @endforeach
             @endisset
         </div>
-
-        <form action="{{route('guides.store')}}" method="POST" encType="multipart/form-data" >
+        <form action="{{route('guides.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <label for="name">Name</label>
             <input type="text" id="name" name="name"  value="{{old('name')}}">

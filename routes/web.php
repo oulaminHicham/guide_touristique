@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\admineController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\CircuitController;
 use App\Http\Controllers\DistinationController;
@@ -18,8 +17,6 @@ Route::resource("destinations",DistinationController::class);
 
 Route::resource("reservation",ReservationController::class);
 
-
-Route::get('/', [admineController::class, 'index']);
 Route::resource("guides",GuideController::class);
 
 Route::resource("circuits",CircuitController::class);
@@ -27,6 +24,7 @@ Route::resource("circuits",CircuitController::class);
 
 Route::resource("distinations",DistinationController::class);
 
+Route::resource("reservation",ReservationController::class);
 
 Route::post('/guides/{id}/accept', [GuideController::class, 'acceptGuide'])->name('guides.acceptGuide');
 Route::resource("guides",GuideController::class);

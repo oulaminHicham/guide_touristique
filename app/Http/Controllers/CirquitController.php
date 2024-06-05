@@ -22,11 +22,21 @@ class CirquitController extends Controller
     {
         $request->validate([
             "descreption"=> ['required' , 'string' , 'max:50'],
-            "photos"=> ['required'],
-            "prix"=> ['required'],
-            "guide_id"=> ['required' , 'exists:users,id'],
+            "photos"=> ['required' , 'string' ],
+            "prix"=> ['required' , 'float'],
+            "guide_id"=> ['required' , 'exists:guides,id'],
             "distination_id"=> ['required' , 'exists:distinations,id'],
         ]);
+        /*
+            #### use this object to test :
+            {
+                "descreption":"good cirquit" ,
+                "photos":"img.png" ,
+                "prix":2452,
+                "guide_id":2 ,
+                "distination_id":1
+            }
+        */
         $data = Cirquit::create($request->all());
         return new CirquitResource($data);
     }

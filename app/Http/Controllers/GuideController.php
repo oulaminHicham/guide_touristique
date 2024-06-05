@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
 class GuideController extends Controller
@@ -13,24 +12,11 @@ class GuideController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function acceptGuide($id)
-{
-    $guide = User::findOrFail($id);
-    $guide->accepter = 1;
-    $guide->save();
-
-    return redirect()->route('guides.index')->with('success', 'Guide has been accepted successfully.');
-}
     public function index()
     {
         $users=User::where('isGuide' , '=' , 1)->get();
 
         return view("guides.index", compact("users"));
-    }
-    public function show($id)
-    {
-        $user = User::findOrFail($id);
-        return view('guides.show', compact('user'));
     }
     public function edit(string $id)
     {
@@ -48,9 +34,9 @@ class GuideController extends Controller
             "prenom"=> ['required' , 'string' ],
             "username"=> ['required' , 'string' ],
             "date_naissance"=> ['required' ,'date' ],
-            "sertificat" => ['required'],
+            "sertificat" => ['required', 'file'],
             "cine"=> ['required' , 'string' ,'max:8', 'min:8'],
-            "photo" => ['required'],
+            "photo" => ['required', 'file'],
             "email"=> ['required' , 'email' ,'unique:users'],
             "password"=> ['required' ,'min:8'],
         ]);
@@ -68,20 +54,20 @@ class GuideController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $user = User::findOrFail($id);
+        $guide = User::findOrFail($id);
         $request->validate([
             "name"=> ['required', 'string'],
             "prenom"=> ['required', 'string'],
             "username"=> ['required', 'string'],
             "date_naissance"=> ['required', 'date'],
-            "sertificat"=> ['nullable', 'string'],
+            "sertificat"=> ['nullable', 'file'], // set to nullable if it's not mandatory to update
             "cine"=> ['required', 'string', 'max:8', 'min:8'],
-            "photo"=> ['nullable', 'string'],
-            "email"=> ['required', 'email', Rule::unique('users')->ignore($user->id)],
-            "password"=> ['nullable', 'min:8'],
+            "photo"=> ['nullable', 'file'], // set to nullable if it's not mandatory to update
+            "email"=> ['required', 'email', Rule::unique('users')->ignore($guide->id)],
+            "password"=> ['nullable', 'min:8'], // set to nullable if it's not mandatory to update
         ]);
 
-        $user->update($request->all());
+        $guide->update($request->all());
         return redirect()->route('guides.index');
     }
     /**
