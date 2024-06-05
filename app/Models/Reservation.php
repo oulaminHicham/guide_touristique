@@ -10,7 +10,7 @@ class Reservation extends Model
     use HasFactory;
     protected $fillable = [
         'date',
-        'distination',
+        'distination_id',
         'user_id',
         'cirquit_id',
     ];
@@ -22,5 +22,9 @@ class Reservation extends Model
     public function cirquit()
     {
         return $this->belongsTo(Cirquit::class);
+    }
+
+    public function distination(){
+        return $this->belongsTo(Distination::class);
     }
 }

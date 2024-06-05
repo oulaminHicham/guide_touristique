@@ -20,11 +20,14 @@ class CirquitController extends Controller
      */
     public function store(Request $request)
     {
+        // $photo = $request->file('photos');
+        
+        
         $request->validate([
             "descreption"=> ['required' , 'string' , 'max:50'],
-            "photos"=> ['required' , 'string' ],
-            "prix"=> ['required' , 'float'],
-            "guide_id"=> ['required' , 'exists:guides,id'],
+            "photos"=> ['required'],
+            "prix"=> ['required'],
+            "guide_id"=> ['required' , 'exists:users,id'],
             "distination_id"=> ['required' , 'exists:distinations,id'],
         ]);
         /*

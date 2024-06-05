@@ -35,6 +35,7 @@ class GuideeController extends Controller
             "email"=> ['required' , 'email' ,'unique:users'],
             "password"=> ['required' ,'min:8' ,'confirmed'],
         ]);
+
         /*
             ## use this object to test
             {
