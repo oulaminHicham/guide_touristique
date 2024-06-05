@@ -10,9 +10,17 @@ class CirquitController extends Controller
     /**
      * Show the form for creating the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return CirquitResource::collection(Cirquit::all());
+        $destinationId = $request->query('destination_id');
+
+        if ($destinationId) {
+            $cirquits = Cirquit::where('distination_id', $destinationId)->get(); // Correcting the typo: distination_id to destination_id if it is the right column name
+        } else {
+            $cirquits = Cirquit::all();
+        }
+
+        return response()->json(CirquitResource::collection($cirquits), 200);
     }
 
     /**
