@@ -26,7 +26,6 @@ class ClientController extends Controller
             "prenom"=> ['required' , 'string' ],
             "username"=> ['required' , 'string' ],
             "date_naissance"=> ['required' ,'date' ],
-            "sertificat"=> ['required' , 'string','image' ],
             "cine"=> ['required' , 'string' ,'max:8', 'min:8'],
             "photo"=> ['required' , 'string' ,'image'],
             "email"=> ['required' , 'email' ,'unique:users'],
