@@ -12,6 +12,14 @@ class GuideController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function acceptGuide($id)
+{
+    $guide = User::findOrFail($id);
+    $guide->accepter = 1;
+    $guide->save();
+
+    return redirect()->route('guides.index')->with('success', 'Guide has been accepted successfully.');
+}
     public function index()
     {
         $users=User::where('isGuide' , '=' , 1)->get();
@@ -22,6 +30,11 @@ class GuideController extends Controller
     {
         $user = User::findOrFail($id);
         return view('guides.edit', compact('user'));
+    }
+    public function show($id)
+    {
+        $user = User::findOrFail($id);
+        return view('guides.show', compact('user'));
     }
     /**
      * Store a newly created resource in storage.
@@ -60,7 +73,7 @@ class GuideController extends Controller
             "prenom"=> ['required', 'string'],
             "username"=> ['required', 'string'],
             "date_naissance"=> ['required', 'date'],
-            "sertificat"=> ['nullable', 'file'], // set to nullable if it's not mandatory to update
+            "sertificat"=> ['nullable', 'string'], // set to nullable if it's not mandatory to update
             "cine"=> ['required', 'string', 'max:8', 'min:8'],
             "photo"=> ['nullable', 'file'], // set to nullable if it's not mandatory to update
             "email"=> ['required', 'email', Rule::unique('users')->ignore($guide->id)],

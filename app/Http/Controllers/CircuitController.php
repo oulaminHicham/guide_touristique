@@ -1,65 +1,59 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Cirquit;
+use App\Models\Distination;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CircuitController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-
         $circuits = Cirquit::all();
-
         return view("circuits.index", compact("circuits"));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        return view("circuits.create");
+        $distinations = Distination::all();
+        $guides = User::where('isGuide', '=', 1)->get();
+        return view("circuits.create", compact('distinations', 'guides'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
-            'photos' => 'required|string',
-            'descreption' => 'required|string',
+            'photos' => 'required|file', // Change to 'file' if expecting a file upload
+            'descreption' => 'required|string', // Ensure this matches the form input name
             'prix' => 'required|numeric',
             'guide_id' => 'required|integer',
             'distination_id' => 'required|integer',
         ]);
 
+        // Handle the file upload
+        if ($request->hasFile('photos')) {
+            $filePath = $request->file('photos')->store('photos', 'public');
+            $request->merge(['photos' => $filePath]);
+        }
+
         Cirquit::create($request->all());
         return redirect()->route('circuits.index');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         $circuit = Cirquit::findOrFail($id);
-        return view('circuits.edit', compact('circuit'));
+        $distinations = Distination::all();
+        $guides = User::where('isGuide', '=', 1)->get();
+        return view('circuits.edit', compact('circuit', 'distinations', 'guides'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         $circuit = Cirquit::findOrFail($id);
         $request->validate([
-            'photos' => 'required|image',
+            'photos' => 'required|string',
             'descreption' => 'required|string',
             'prix' => 'required|numeric',
             'guide_id' => 'required|integer',
@@ -70,12 +64,13 @@ class CircuitController extends Controller
         return redirect()->route('circuits.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         $circuit = Cirquit::findOrFail($id);
+
+        // Assuming there is a reservations relationship
+        $circuit->reservations()->delete();
+
         $circuit->delete();
         return redirect()->route('circuits.index');
     }

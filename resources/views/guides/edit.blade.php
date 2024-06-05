@@ -74,7 +74,7 @@
 <body>
     <div class="container">
         <h1>Edit Guide</h1>
-        <form action="{{ route('guides.update', $user->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('guides.update', $user->id) }}" method="POST" >
             @csrf
             @method('PUT')
 
