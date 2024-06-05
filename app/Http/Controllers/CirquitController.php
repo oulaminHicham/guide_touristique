@@ -20,9 +20,6 @@ class CirquitController extends Controller
      */
     public function store(Request $request)
     {
-        // $photo = $request->file('photos');
-        
-        
         $request->validate([
             "descreption"=> ['required' , 'string' , 'max:50'],
             "photos"=> ['required'],
@@ -30,16 +27,6 @@ class CirquitController extends Controller
             "guide_id"=> ['required' , 'exists:users,id'],
             "distination_id"=> ['required' , 'exists:distinations,id'],
         ]);
-        /*
-            #### use this object to test :
-            {
-                "descreption":"good cirquit" ,
-                "photos":"img.png" ,
-                "prix":2452,
-                "guide_id":2 ,
-                "distination_id":1
-            }
-        */
         $data = Cirquit::create($request->all());
         return new CirquitResource($data);
     }
