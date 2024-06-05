@@ -122,11 +122,11 @@
 <body>
     <div class="form-container">
         <h1>Create Circuit</h1>
-        <form action="{{ route('circuits.store') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('circuits.store') }}" method="post" >
             @csrf
             <div class="form-group">
                 <label for="photos">Photos:</label>
-                <input type="file" id="photos" name="photos" required>
+                <input type="file"id="photos" name="photos"  required>
             </div>
             <div class="form-group">
                 <label for="description">Description:</label>

@@ -44,7 +44,6 @@
 
         .form-group input[type="text"],
         .form-group input[type="number"],
-        .form-group input[type="file"],
         .form-group textarea {
             width: 100%;
             padding: 10px;
@@ -99,21 +98,20 @@
 <body>
     <div class="form-container">
         <h1>Edit Circuit</h1>
-        <form action="{{ route('circuits.update', $circuit->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('circuits.update', $circuit->id) }}" method="POST" >
             @csrf
             @method('PUT')
             <div class="form-group">
                 <label for="photos">Photos:</label>
-                <input type="file" id="photos" name="photos">
-
+                <input type="file"id="photos" name="photos" value="{{ old('photos', $circuit->photos)}}" required>
             </div>
             <div class="form-group">
-                <label for="descreption">Description:</label>
-                <textarea id="descreption" name="descreption" required>{{ old('descreption', $circuit->descreption) }}</textarea>
+                <label for="description">Description:</label>
+                <textarea id="descreption" name="descreption"  required>{{ old('descreption', $circuit->descreption) }}</textarea>
             </div>
             <div class="form-group">
-                <label for="prix">Price:</label>
-                <input type="number" id="prix" name="prix" value="{{ old('prix', $circuit->prix) }}" required>
+                <label for="price">Prix:</label>
+                <input type="string" id="prix" name="prix" value="{{ old('prix', $circuit->nom) }}" required>
             </div>
             <div class="form-group">
                 <label for="guide_id">Guide:</label>
