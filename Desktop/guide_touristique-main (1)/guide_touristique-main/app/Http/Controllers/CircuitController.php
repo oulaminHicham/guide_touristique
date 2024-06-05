@@ -16,7 +16,6 @@ class CircuitController extends Controller
     {
 
         $circuits = Cirquit::all();
-
         return view("circuits.index", compact("circuits"));
     }
 
@@ -37,8 +36,8 @@ class CircuitController extends Controller
     {
         $request->validate([
             'photos' => 'required|string',
-            'descreption' => 'required|string',
-            'prix' => 'required|numeric',
+            // 'descreption' => 'required|string',
+            'nom' => 'required|string',
             'guide_id' => 'required|integer',
             'distination_id' => 'required|integer',
         ]);
@@ -66,8 +65,8 @@ class CircuitController extends Controller
         $circuit = Cirquit::findOrFail($id);
         $request->validate([
             'photos' => 'required|string',
-            'descreption' => 'required|string',
-            'prix' => 'required|numeric',
+            // 'descreption' => 'required|string',
+            'nom' => 'required|string',
             'guide_id' => 'required|integer',
             'distination_id' => 'required|integer',
         ]);

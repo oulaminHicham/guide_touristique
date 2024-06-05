@@ -20,7 +20,7 @@ Route::middleware(['auth:sanctum'])->group(function(){
 //     ######             DISTINATION DATA API           #########
 Route::get('/distinationData', [DistinationController::class , 'distinationData']);
 //     ######             CIRQUIT API           #########
-Route::apiResource("/cirquits" , CirquitController::class);
+Route::apiResource('/cirquits', CirquitController::class);
 //     ######             GUIDE APIS            #########
 Route::apiResource('/guides' , GuideeController::class);
 //     ######             CLIENT APIS            #########
@@ -28,5 +28,6 @@ Route::apiResource("/clients",ClientController::class);
 //     ######             LOGIN            #########
 Route::post('/login' , [AuthController::class , 'login']);
 Route::post('/logout' , [AuthController::class , 'logout']);
+
 //   get the cirquit of somme guide
 // Route::get('/guides/{id}' , [GuideeController::class ,'getCirquits']);

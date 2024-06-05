@@ -11,7 +11,7 @@ class Cirquit extends Model
     protected $fillable = [
         'photos',
         'descreption',
-        'prix',
+        'nom',
         'guide_id',
         'distination_id',
     ];

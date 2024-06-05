@@ -105,13 +105,13 @@
                 <label for="photos">Photos:</label>
                 <input type="file"id="photos" name="photos" value="{{ old('photos', $circuit->photos)}}" required>
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="description">Description:</label>
                 <textarea id="descreption" name="descreption"  required>{{ old('descreption', $circuit->descreption) }}</textarea>
-            </div>
+            </div> -->
             <div class="form-group">
-                <label for="price">Price:</label>
-                <input type="number" id="prix" name="prix" value="{{ old('prix', $circuit->prix) }}" required>
+                <label for="price">Nom:</label>
+                <input type="string" id="nom" name="nom" value="{{ old('nom', $circuit->nom) }}" required>
             </div>
             <div class="form-group">
                 <label for="guide_id">Guide:</label>

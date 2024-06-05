@@ -17,7 +17,7 @@ class CirquitResource extends JsonResource
         return [
             "id"=> $this->id,
             "photos"=>$this->photos,
-            "prix"=>$this->prix,
+            "nom"=>$this->nom,
             "guide_id"=>$this->guide_id,
             "distination_id"=>$this->distination_id
 

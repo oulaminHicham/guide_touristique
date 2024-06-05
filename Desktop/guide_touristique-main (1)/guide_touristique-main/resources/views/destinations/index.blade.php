@@ -77,7 +77,7 @@
                 <div class="col-lg-4 mt-3">
                     <div class="cards destination-card">
                         @if ($distination->photo)
-                            <img src="images/destination/{{ $distination->photo }}" class="card-img-top destination-img" alt="Photo de {{ $distination->nom }}">
+                            <img src="destination/{{ $distination->photo }}" class="card-img-top destination-img" alt="Photo de {{ $distination->nom }}">
                         @else
                             <div class="card-img-top destination-img d-flex align-items-center justify-content-center bg-light">
                                 <span class="text-muted">No Image</span>

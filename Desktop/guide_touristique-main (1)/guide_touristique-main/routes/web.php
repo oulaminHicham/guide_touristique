@@ -29,8 +29,6 @@ Route::resource("reservation",ReservationController::class);
 Route::post('/guides/{id}/accept', [GuideController::class, 'acceptGuide'])->name('guides.acceptGuide');
 Route::resource("guides",GuideController::class);
 
-Route::resource("circuits",CircuitController::class);
-
 Route::get('/clients', [ClientController::class, 'aficher'])->name('client.aficherClient');
 Route::get('/clients/add', [ClientController::class, 'add'])->name('client.add');
 Route::post('/clients', [ClientController::class, 'Ajouter'])->name('client.store');
@@ -39,3 +37,4 @@ Route::get('/clients/edit/{id}', [ClientController::class, 'edite'])->name('clie
 Route::put('/clients/{id}', [ClientController::class, 'modifier'])->name('client.update');
 Route::delete('/clients/{id}', [ClientController::class, 'supprimer'])->name('client.delete');
 
+Route::resource("cirquits",CircuitController::class);

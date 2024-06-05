@@ -79,8 +79,8 @@
                         <img src="{{ asset('images/'.$circuit['photos']) }}" class="card-img-top circuit-img" alt="{{ $circuit['descreption'] }}">
                         <div class="card-body d-flex justify-content-between">
                             <div>
-                                <h5 class="card-title circuit-title">{{ $circuit['descreption'] }}</h5>
-                                <h6>{{ $circuit['prix'] }} $</h6>
+                                
+                                <h6>{{ $circuit['nom'] }} </h6>
                             </div>
                             <div class="dropdown">
                                 <div class="btn fs-4">...</div>

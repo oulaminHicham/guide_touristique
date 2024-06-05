@@ -10,9 +10,17 @@ class CirquitController extends Controller
     /**
      * Show the form for creating the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return CirquitResource::collection(Cirquit::all());
+        $destinationId = $request->query('destination_id');
+        
+        if ($destinationId) {
+            $cirquits = Cirquit::where('distination_id', $destinationId)->get(); // Correcting the typo: `distination_id` to `destination_id` if it is the right column name
+        } else {
+            $cirquits = Cirquit::all();
+        }
+
+        return response()->json(CirquitResource::collection($cirquits), 200);
     }
 
     /**
@@ -20,12 +28,13 @@ class CirquitController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
-            "descreption"=> ['required' , 'string' , 'max:50'],
-            "photos"=> ['required' , 'string' ],
-            "prix"=> ['required' , 'float'],
-            "guide_id"=> ['required' , 'exists:guides,id'],
-            "distination_id"=> ['required' , 'exists:distinations,id'],
+            'photos' => 'required|string',
+            'descreption' => 'required|string',
+            'nom' => 'required|string',
+            'guide_id' => 'required|integer',
+            'distination_id' => 'required|integer',
         ]);
         /*
             #### use this object to test :
@@ -40,6 +49,7 @@ class CirquitController extends Controller
         $data = Cirquit::create($request->all());
         return new CirquitResource($data);
     }
+    
     /**
      * Update the resource in storage.
      */
@@ -49,7 +59,7 @@ class CirquitController extends Controller
         $request->validate([
             "descreption"=> ['required' , 'string' , 'max:50'],
             "photo"=> ['required' , 'string' , 'image'],
-            "prix"=> ['required' , 'float'],
+            "nom"=> ['required' , 'string'],
             "guide_id"=> ['required' , 'exists:guides,id'],
             "distination_id"=> ['required' , 'exists:distinations,id'],
         ]);

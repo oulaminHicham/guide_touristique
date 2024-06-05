@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('cirquits', function (Blueprint $table) {
             $table->id();
             $table->string('photos');
-            $table->string('descreption');
-            $table->float('prix');
+            // $table->string('descreption');
+            $table->string('nom');
             $table->unsignedBigInteger('guide_id');
             $table->foreign('guide_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade'); 
             $table->foreignId('distination_id')->constrained()->onDelete('cascade')->onUpdate('cascade');

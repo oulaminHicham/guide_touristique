@@ -105,13 +105,13 @@
                 <label for="photos">Photos:</label>
                 <input type="file" id="photos" name="photos" required>
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="description">Description:</label>
                 <textarea id="description" name="descreption" required></textarea>
-            </div>
+            </div> -->
             <div class="form-group">
-                <label for="price">prix:</label>
-                <input type="number" id="prix" name="prix" required>
+                <label for="price">Nom:</label>
+                <input type="text" id="nom" name="nom" required>
             </div>
             <div class="form-group">
                 <label for="guide_id">Guide:</label>
